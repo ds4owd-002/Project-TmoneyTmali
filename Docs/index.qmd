@@ -1,0 +1,21 @@
+---
+title: "index"
+format: html
+---
+Project description
+
+This data contains all of the informal settlement within the eThekwini 
+municipality and the provision of sanitation and their types within each 
+settlement. I want to see the settlement with sanitation provision, their type, 
+and identify areas where new sanitation technologies are being employed if there
+are any to show the work being done by the municipality in improving sanitation.
+
+```{r}
+library(tidyverse)
+```
+
+
+```{r}
+read_csv(here::here("data/raw/Informal_Settlement_Programme_-1898186875815614491.csv"))
+```
+

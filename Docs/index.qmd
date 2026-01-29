@@ -1,21 +1,48 @@
 ---
 title: "index"
 format: html
+author: Thabiso Zikalala 
 ---
+
 Project description
 
-This data contains all of the informal settlement within the eThekwini 
-municipality and the provision of sanitation and their types within each 
-settlement. I want to see the settlement with sanitation provision, their type, 
-and identify areas where new sanitation technologies are being employed if there
-are any to show the work being done by the municipality in improving sanitation.
+This data contains all of the informal settlement within the eThekwini municipality and the provision of sanitation and their types within each settlement. I want to see the settlement with sanitation provision, their type, and identify areas where new sanitation technologies are being employed if there are any to show the work being done by the municipality in improving sanitation.
 
 ```{r}
 library(tidyverse)
+library(dbplyr)
+library(tibble)
+library(ggthemes)
+library(lubridate) 
+library(readxl) 
+library(readr) 
+library(markdown)
+library(tidyr)
+library(janitor) 
+library(gtsummary)
+library(ggplot2)
 ```
-
 
 ```{r}
-read_csv(here::here("data/raw/Informal_Settlement_Programme_-1898186875815614491.csv"))
+eThekwini_Informal_Settlements<- read_csv("data/raw/durban_informal_settlement_Programme.csv")
 ```
 
+```{r}
+Durban_Informal_Settlement_Programme
+```
+
+```{r}
+glimpse(Durban_Informal_Settlement_Programme)
+head(Durban_Informal_Settlement_Programme)
+tail(Durban_Informal_Settlement_Programme)
+```
+
+**Introduction**
+
+**Methods**
+
+**Results**
+
+**Discussion**
+
+**Conclusion**

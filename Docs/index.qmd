@@ -1,48 +1,37 @@
 ---
-title: "index"
+title: "index.qmd"
 format: html
-author: Thabiso Zikalala 
+editor: visual
 ---
 
-Project description
+## Quarto
 
-This data contains all of the informal settlement within the eThekwini municipality and the provision of sanitation and their types within each settlement. I want to see the settlement with sanitation provision, their type, and identify areas where new sanitation technologies are being employed if there are any to show the work being done by the municipality in improving sanitation.
+Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+
+## Running Code
+
+When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
 
 ```{r}
 library(tidyverse)
-library(dbplyr)
-library(tibble)
-library(ggthemes)
-library(lubridate) 
-library(readxl) 
-library(readr) 
-library(markdown)
-library(tidyr)
-library(janitor) 
-library(gtsummary)
-library(ggplot2)
 ```
 
-```{r}
-eThekwini_Informal_Settlements<- read_csv("data/raw/durban_informal_settlement_Programme.csv")
+You can add options to executable code like this
+
+```{read_csv(here::here("data/raw/durban_informal_settlements.csv"))}
+```
+
+```{eThekwini_Settlements<-read_csv("data/raw/durban_informal_settlements.csv")}
 ```
 
 ```{r}
 Durban_Informal_Settlement_Programme
 ```
 
-```{r}
-glimpse(Durban_Informal_Settlement_Programme)
-head(Durban_Informal_Settlement_Programme)
-tail(Durban_Informal_Settlement_Programme)
-```
+The `echo: false` option disables the printing of code (only output is displayed).
 
-**Introduction**
+Project description
 
-**Methods**
+This data contains all of the informal settlements registered by the eThekwini municipality. It containes the services provided by the municipality in terms of sanitation, electricity, refusal waste collection and the location details. This data is to be used by the different municipality departments for future planning.
 
-**Results**
-
-**Discussion**
-
-**Conclusion**
+I am using this data to categorise the services provided by the municipality within the settlements and to see if there plans to improve service delivery.

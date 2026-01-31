@@ -1,21 +1,30 @@
 ---
-title: "index.qmd"
+title: "The Layout of Informal Settlements in Durban, KwaZulu-Natal"
+author: Thabiso Zikalala 
 format: html
 editor: visual
+date: "today" 
 ---
 
-## Quarto
+# Introduction
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+Access to safe and adequate sanitation is a human right that is linked to human dignity, environmental protection, a conducive environemnt that positively impacts the livelihood of every hhuman being in the world. As a results, it has been prioritised under Sustainable Development Goal 6 (SDG 6), which calls for equitable access to sanitation and hygiene for all by 2030 (United Nations, 2015). In South Africa, this has become a basic human right recognised through Section 24 of the constitution. However, rapid urbanisation and persistent socio-economic inequality have resulted in the continued growth of informal settlements, particularly in metropolitan municipalities such as eThekwini, where sanitation provision remains a critical service delivery challenge.
 
-## Running Code
+The municipaity of eThekwini recognised this challenge and was pressured by the need to address large sanitation backlogs in areas with high population density, informal housing, and difficult terrain. informal settlements were recognised and given communal ablution blocks (CABs) facilities, and on-site sanitation technologies such as ventilated improved pit (VIP) latrines (Roma et al., 2013; Buckley et al., 2008). The CABs and VIPs were built temporarilly whilst improving sanitation structures in Durban that will abe able to accomoadate the now desely populated areas as a results of city migration (Roma et al., 2013; Buckley et al., 2008).
 
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+The National Upgrading Support Programme (NUSP) in eThekwini Municipality has increasingly aligned its mission in increasing sanitation for the informal settlement and previously disadvantahed communities. This is a tailored approach that will consider site specific environmental risks, climate resilience, and long-term service sustainability (Roma & Buckley, 2016). In line with SDG 6.2, municipal plans emphasise not only increased coverage, but also improving the quality of service delivery with more durable and safely managed sanitation systems.
+
+The eThekwini municipality published its current status of sanitation provision within informal settlements in eThekwini in 2022. This is to be used through city planning in noting the types, distribution, and scale of sanitation services, and how future projects can be implemented in order to meet the objectives of SDG 6 in an urban informal settlement context.
+
+# Methods
+
+Data for this study was obtained from the Informal Settlement Programme dataset accessed via the [eThekwini Open GIS DATA](https://gis-ethekwini.opendata.arcgis.com/datasets/c4a5c06d389b40a3ae49c714bc0c71c9_0/explore?location=-29.875500%2C30.927500%2C11&showTable=true). The eThekwini Open GIS Data platform is GIS database that focuses on the services provided at a municipal level that is open to the public. The dataset was provided in Microsoft Excel format. This data below contains asettlement-level information on the spatial distribution of informal settlements, estimated household counts, and access to basic services, including sanitation, within eThekwini Municipality. This data is to be used by the different municipality departments for future planning.
 
 ```{r}
 #| label: setup
 #| include: false
 
+library(gt)
 library(tidyverse)
 library(here)
 library(readxl) 
@@ -29,23 +38,55 @@ library(tidyverse)
 library(markdown)
 ```
 
-You can add options to executable code like this
-
 ```{r}
-read_csv (here::here("Data /raw/Durban_Informal_Settlement_Programme.csv"),
-           show_col_types = FALSE)
-
+read_csv (here::here("Data /raw/Durban_Informal_Settlement_Programme.csv") ,
+           show_col_types = FALSE) 
 ```
 
 ```{r}
-ethekwini_informal_Settlements <- read_csv (here::here("Data /raw/Durban_Informal_Settlement_Programme.csv"),
+eis_raw<-read_csv (here::here("Data /raw/Durban_Informal_Settlement_Programme.csv") ,
+           show_col_types = FALSE)
+
+eis<-read_csv (here::here("Data /raw/Durban_Informal_Settlement_Programme.csv") ,
            show_col_types = FALSE)
 ```
 
+```{r}
+sanitation_units<- eis |>mutate(San_units=Shape__Length/100)
+```
+
+```{r}
+sanunitable<-sanitation_units |>relocate(San_units,.after=STREETNAME)
+
+sanunitable<-sanunitable |>relocate(ALT_NAME,.after=LONGITUDE)
+sanunitable<-sanunitable |>relocate(WARD_S,.after=LONGITUDE)
+sanunitable<-sanunitable |>relocate(ALT_NAME,.after=LONGITUDE)
+sanunitable<-sanunitable |>relocate(SANITATION,.after=STREETNAME)
+sanunitable<-sanunitable |>relocate(WATER_SUPP,.after=PLANNING_U)
+sanunitable<-sanunitable |>relocate(ELECTRIC_2,.after=WATER_SUPP)
+sansubset<-sanunitable[1:566,1:8]
+```
+
+```{r}
+sansubset2<-sansubset|>filter(SANITATION!="TBC")
+sansubset3<-sansubset2|>filter(WATER_SUPP!="TBC")
+```
+
+```{r}
+#| label: tbl-sansubset3
+#| tal-cap: "Informal Settlement Programme in eThekwini"
+
+sansubset3|>gt()|>tab_header(title="Informal Settlement in eThekwini",subtitle="Sanitation Services")
+```
+
+```{}
+```
+
+\
 The `echo: false` option disables the printing of code (only output is displayed).
 
-Project description
+The extension of basic sanitation services to previously unserved informal settlements has been shown to yield **substantial improvements in health and living conditions**. Empirical studies in South Africa demonstrate that access to sanitation significantly reduces exposure to faecal contamination, lowers the prevalence of diarrhoeal disease, and improves environmental hygiene in densely populated settlements (Graham & Polizzotto, 2013; Tumwebaze & Mosler, 2015). Beyond health outcomes, sanitation access contributes to improved **quality of life and social wellbeing**, particularly by enhancing safety, privacy, and dignity for women and children, who are disproportionately affected by inadequate sanitation (Sutherland et al., 2014).
 
-This data contains all of the informal settlements registered by the eThekwini municipality. It containes the services provided by the municipality in terms of sanitation, electricity, refusal waste collection and the location details. This data is to be used by the different municipality departments for future planning.
+Project description
 
 I am using this data to categorise the services provided by the municipality within the settlements and to see if there plans to improve service delivery.

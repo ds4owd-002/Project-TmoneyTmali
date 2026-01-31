@@ -64,22 +64,35 @@ sanunitable<-sanunitable |>relocate(ALT_NAME,.after=LONGITUDE)
 sanunitable<-sanunitable |>relocate(SANITATION,.after=STREETNAME)
 sanunitable<-sanunitable |>relocate(WATER_SUPP,.after=PLANNING_U)
 sanunitable<-sanunitable |>relocate(ELECTRIC_2,.after=WATER_SUPP)
-sansubset<-sanunitable[1:566,1:8]
+sanunitable<-sanunitable |>relocate(REGION,.after=WATER_SUPP)
+sanunitable<-sanunitable |>relocate(REFUSE,.after=ELECTRIC_2)
+sansubset<-sanunitable[1:566,1:10]
 ```
 
 ```{r}
 sansubset2<-sansubset|>filter(SANITATION!="TBC")
 sansubset3<-sansubset2|>filter(WATER_SUPP!="TBC")
+sansubset4<-sansubset3|>filter(ELECTRIC_2!="TBC")
 ```
 
 ```{r}
-#| label: tbl-sansubset3
-#| tal-cap: "Informal Settlement Programme in eThekwini"
 
-sansubset3|>gt()|>tab_header(title="Informal Settlement in eThekwini",subtitle="Sanitation Services")
+sansubset5<-sansubset4 %>% count(SANITATION)
+sansubset5|>count(SANITATION)
 ```
 
-```{}
+```{r}
+sansubset5<-sansubset5 %>% mutate(SANITATION=case_when(SANITATION=="VIPs"~"VIP",SANITATION=="Ablution Facility"~"Ablution facility",SANITATION=="Ablution Facilty"~"Ablution facility",SANITATION=="Ablution facillity"~"Ablution facility",SANITATION=="Ablution Facility & VIP"~"Ablution facility & VIP",SANITATION=="Ablutiion Facility"~"Ablution facility",SANITATION=="Ablution Facility & VIPs"~"Ablution facility & VIP",SANITATION=="Ablution Facility & VIP toilets"~"Ablution facility & VIP",SANITATION=="Ablution facilities & Pit Privies"~"Ablution facility & Pit privies",SANITATION=="Ablution facility, Pit Privies"~"Ablution facility & Pit privies",.default = SANITATION))
+```
+
+```{r}
+#| label: tbl-sansubset5
+#| tal-cap: "Types of sanitatioin systems provided in eThekwini municipality"
+
+sansubset5|>gt()|>tab_header(title="Informal Settlement in eThekwini",subtitle="Informal settlement")
+```
+
+```         
 ```
 
 \

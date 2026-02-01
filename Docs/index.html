@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Thabiso Zikalala">
-<meta name="dcterms.date" content="2026-01-31">
+<meta name="dcterms.date" content="2026-02-01">
 
 <title>The Layout of Informal Settlements in Durban, KwaZulu-Natal</title>
 <style>
@@ -101,7 +101,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">January 31, 2026</p>
+      <p class="date">February 1, 2026</p>
     </div>
   </div>
   
@@ -124,105 +124,114 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h1>Methods</h1>
 <p>Data for this study was obtained from the Informal Settlement Programme dataset accessed via the <a href="https://gis-ethekwini.opendata.arcgis.com/datasets/c4a5c06d389b40a3ae49c714bc0c71c9_0/explore?location=-29.875500%2C30.927500%2C11&amp;showTable=true">eThekwini Open GIS DATA</a>. The eThekwini Open GIS Data platform is GIS database that focuses on the services provided at a municipal level that is open to the public. The dataset was provided in Microsoft Excel format. This data below contains asettlement-level information on the spatial distribution of informal settlements, estimated household counts, and access to basic services, including sanitation, within eThekwini Municipality. This data is to be used by the different municipality departments for future planning.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span> (here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"Data /raw/Durban_Informal_Settlement_Programme.csv"</span>) ,</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 566 × 18
-   OBJECTID NAME_OF_SE  ALT_NAME STREETNAME WARD_S PLANNING_U LATITUDE LONGITUDE
-      &lt;dbl&gt; &lt;chr&gt;       &lt;chr&gt;    &lt;chr&gt;      &lt;chr&gt;  &lt;chr&gt;         &lt;dbl&gt;     &lt;dbl&gt;
- 1        1 Amatikwe    &lt;NA&gt;     MR93 North 56/108 Amatikwe   -2.97e14   3.09e14
- 2        2 Congo Phas… Congo P… MR93 /MR9… 55/57  Inanda Co… -2.97e14   3.10e14
- 3        3 Africa Ina… Africa   Curnick N… 55     Ohlange-A… -2.97e13   3.09e14
- 4        4 Namibia     &lt;NA&gt;     Curnick N… 108/44 Inanda Na… -2.97e13   3.09e14
- 5        5 Mshayazafe  &lt;NA&gt;     Sidudla R… 55     Mshayazaf… -2.97e14   3.09e14
- 6        6 Ntuzuma - … &lt;NA&gt;     Ithendele… 44/43  Emachoben… -2.97e14   3.09e14
- 7        7 Ntuzuma - … &lt;NA&gt;     121829 St… 44/43  Emachoben… -2.97e14   3.09e14
- 8        8 Smithfield  &lt;NA&gt;     Smithfiel… 34     Sea Cow L… -2.98e14   3.10e14
- 9        9 Johanna Ro… &lt;NA&gt;     Johanna R… 34     Sea Cow L… -2.98e14   3.10e14
-10       10 Triumph/ M… &lt;NA&gt;     Triumph R… 34     Sea Cow L… -2.98e14   3.10e14
-# ℹ 556 more rows
-# ℹ 10 more variables: REGION &lt;chr&gt;, WATER_SUPP &lt;chr&gt;, SANITATION &lt;chr&gt;,
-#   REFUSE &lt;chr&gt;, ELECTRIC_2 &lt;chr&gt;, UNIREFCODE &lt;chr&gt;, EST_HHC &lt;dbl&gt;,
-#   NUSP_CAT &lt;chr&gt;, Shape__Area &lt;dbl&gt;, Shape__Length &lt;dbl&gt;</code></pre>
-</div>
+<details class="code-fold">
+<summary>Show code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>eis_data <span class="ot">&lt;-</span> <span class="fu">suppressMessages</span>(<span class="fu">read_csv</span> (here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"Data /raw/Durban_Informal_Settlement_Programme.csv"</span>),<span class="at">show_col_types =</span> <span class="cn">FALSE</span>), <span class="fu">invisible</span>(eis_data))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>eis_raw<span class="ot">&lt;-</span><span class="fu">read_csv</span> (here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"Data /raw/Durban_Informal_Settlement_Programme.csv"</span>) ,</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>eis<span class="ot">&lt;-</span><span class="fu">read_csv</span> (here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"Data /raw/Durban_Informal_Settlement_Programme.csv"</span>) ,</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>eis_raw<span class="ot">&lt;-</span><span class="fu">read_csv</span> (here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"Data /raw/Durban_Informal_Settlement_Programme.csv"</span>) ,</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>eis<span class="ot">&lt;-</span><span class="fu">read_csv</span> (here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"Data /raw/Durban_Informal_Settlement_Programme.csv"</span>) ,</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#between chunk 2 and chunk 3, i am not sure which code is working and i am making a decision to keep them both. </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sanitation_units<span class="ot">&lt;-</span> eis <span class="sc">|&gt;</span><span class="fu">mutate</span>(<span class="at">San_units=</span>Shape__Length<span class="sc">/</span><span class="dv">100</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sanitation_units<span class="ot">&lt;-</span> eis <span class="sc">|&gt;</span><span class="fu">mutate</span>(<span class="at">San_units=</span>Shape__Length<span class="sc">/</span><span class="dv">100</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sanunitable<span class="ot">&lt;-</span>sanitation_units <span class="sc">|&gt;</span><span class="fu">relocate</span>(San_units,<span class="at">.after=</span>STREETNAME)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>sanunitable<span class="ot">&lt;-</span>sanunitable <span class="sc">|&gt;</span><span class="fu">relocate</span>(ALT_NAME,<span class="at">.after=</span>LONGITUDE)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>sanunitable<span class="ot">&lt;-</span>sanunitable <span class="sc">|&gt;</span><span class="fu">relocate</span>(WARD_S,<span class="at">.after=</span>LONGITUDE)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>sanunitable<span class="ot">&lt;-</span>sanunitable <span class="sc">|&gt;</span><span class="fu">relocate</span>(ALT_NAME,<span class="at">.after=</span>LONGITUDE)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>sanunitable<span class="ot">&lt;-</span>sanunitable <span class="sc">|&gt;</span><span class="fu">relocate</span>(SANITATION,<span class="at">.after=</span>STREETNAME)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>sanunitable<span class="ot">&lt;-</span>sanunitable <span class="sc">|&gt;</span><span class="fu">relocate</span>(WATER_SUPP,<span class="at">.after=</span>PLANNING_U)</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>sanunitable<span class="ot">&lt;-</span>sanunitable <span class="sc">|&gt;</span><span class="fu">relocate</span>(ELECTRIC_2,<span class="at">.after=</span>WATER_SUPP)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>sanunitable<span class="ot">&lt;-</span>sanunitable <span class="sc">|&gt;</span><span class="fu">relocate</span>(REGION,<span class="at">.after=</span>WATER_SUPP)</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>sanunitable<span class="ot">&lt;-</span>sanunitable <span class="sc">|&gt;</span><span class="fu">relocate</span>(REFUSE,<span class="at">.after=</span>ELECTRIC_2)</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>sansubset<span class="ot">&lt;-</span>sanunitable[<span class="dv">1</span><span class="sc">:</span><span class="dv">566</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sanunitable<span class="ot">&lt;-</span>sanitation_units <span class="sc">|&gt;</span><span class="fu">relocate</span>(San_units,<span class="at">.after=</span>STREETNAME)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>sanunitable<span class="ot">&lt;-</span>sanunitable <span class="sc">|&gt;</span><span class="fu">relocate</span>(ALT_NAME,<span class="at">.after=</span>LONGITUDE)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>sanunitable<span class="ot">&lt;-</span>sanunitable <span class="sc">|&gt;</span><span class="fu">relocate</span>(WARD_S,<span class="at">.after=</span>LONGITUDE)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>sanunitable<span class="ot">&lt;-</span>sanunitable <span class="sc">|&gt;</span><span class="fu">relocate</span>(ALT_NAME,<span class="at">.after=</span>LONGITUDE)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>sanunitable<span class="ot">&lt;-</span>sanunitable <span class="sc">|&gt;</span><span class="fu">relocate</span>(SANITATION,<span class="at">.after=</span>STREETNAME)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>sanunitable<span class="ot">&lt;-</span>sanunitable <span class="sc">|&gt;</span><span class="fu">relocate</span>(WATER_SUPP,<span class="at">.after=</span>PLANNING_U)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>sanunitable<span class="ot">&lt;-</span>sanunitable <span class="sc">|&gt;</span><span class="fu">relocate</span>(ELECTRIC_2,<span class="at">.after=</span>WATER_SUPP)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>sanunitable<span class="ot">&lt;-</span>sanunitable <span class="sc">|&gt;</span><span class="fu">relocate</span>(REGION,<span class="at">.after=</span>WATER_SUPP)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>sanunitable<span class="ot">&lt;-</span>sanunitable <span class="sc">|&gt;</span><span class="fu">relocate</span>(REFUSE,<span class="at">.after=</span>ELECTRIC_2)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>sansubset<span class="ot">&lt;-</span>sanunitable[<span class="dv">1</span><span class="sc">:</span><span class="dv">566</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sansubset2<span class="ot">&lt;-</span>sansubset<span class="sc">|&gt;</span><span class="fu">filter</span>(SANITATION<span class="sc">!=</span><span class="st">"TBC"</span>)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>sansubset3<span class="ot">&lt;-</span>sansubset2<span class="sc">|&gt;</span><span class="fu">filter</span>(WATER_SUPP<span class="sc">!=</span><span class="st">"TBC"</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>sansubset4<span class="ot">&lt;-</span>sansubset3<span class="sc">|&gt;</span><span class="fu">filter</span>(ELECTRIC_2<span class="sc">!=</span><span class="st">"TBC"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sansubset2<span class="ot">&lt;-</span>sansubset<span class="sc">|&gt;</span><span class="fu">filter</span>(SANITATION<span class="sc">!=</span><span class="st">"TBC"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>sansubset3<span class="ot">&lt;-</span>sansubset2<span class="sc">|&gt;</span><span class="fu">filter</span>(WATER_SUPP<span class="sc">!=</span><span class="st">"TBC"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>sansubset4<span class="ot">&lt;-</span>sansubset3<span class="sc">|&gt;</span><span class="fu">filter</span>(ELECTRIC_2<span class="sc">!=</span><span class="st">"TBC"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sansubset5<span class="ot">&lt;-</span>sansubset4 <span class="sc">%&gt;%</span> <span class="fu">count</span>(SANITATION)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>sansubset5<span class="sc">|&gt;</span><span class="fu">count</span>(SANITATION)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 23 × 2
-   SANITATION                            n
-   &lt;chr&gt;                             &lt;int&gt;
- 1 Ablutiion Facility                    1
- 2 Ablution Facility                     1
- 3 Ablution Facility &amp; Pit Privies       1
- 4 Ablution Facility &amp; VIP               1
- 5 Ablution Facility &amp; VIP toilets       1
- 6 Ablution Facility &amp; VIPs              1
- 7 Ablution Facility &amp; flush toilets     1
- 8 Ablution Facilty                      1
- 9 Ablution facilities &amp; Pit Privies     1
-10 Ablution facility                     1
-# ℹ 13 more rows</code></pre>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sansubset5<span class="ot">&lt;-</span>sansubset4 <span class="sc">%&gt;%</span> <span class="fu">count</span>(SANITATION)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>sansubset5 <span class="sc">%&gt;%</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">SANITATION =</span> <span class="st">"Sanitation Type"</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="st">"Frequency"</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
-</div>
+<pre><code></code></pre>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sansubset5<span class="ot">&lt;-</span>sansubset5 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">SANITATION=</span><span class="fu">case_when</span>(SANITATION<span class="sc">==</span><span class="st">"VIPs"</span><span class="sc">~</span><span class="st">"VIP"</span>,SANITATION<span class="sc">==</span><span class="st">"Ablution Facility"</span><span class="sc">~</span><span class="st">"Ablution facility"</span>,SANITATION<span class="sc">==</span><span class="st">"Ablution Facilty"</span><span class="sc">~</span><span class="st">"Ablution facility"</span>,SANITATION<span class="sc">==</span><span class="st">"Ablution facillity"</span><span class="sc">~</span><span class="st">"Ablution facility"</span>,SANITATION<span class="sc">==</span><span class="st">"Ablution Facility &amp; VIP"</span><span class="sc">~</span><span class="st">"Ablution facility &amp; VIP"</span>,SANITATION<span class="sc">==</span><span class="st">"Ablutiion Facility"</span><span class="sc">~</span><span class="st">"Ablution facility"</span>,SANITATION<span class="sc">==</span><span class="st">"Ablution Facility &amp; VIPs"</span><span class="sc">~</span><span class="st">"Ablution facility &amp; VIP"</span>,SANITATION<span class="sc">==</span><span class="st">"Ablution Facility &amp; VIP toilets"</span><span class="sc">~</span><span class="st">"Ablution facility &amp; VIP"</span>,SANITATION<span class="sc">==</span><span class="st">"Ablution facilities &amp; Pit Privies"</span><span class="sc">~</span><span class="st">"Ablution facility &amp; Pit privies"</span>,SANITATION<span class="sc">==</span><span class="st">"Ablution facility, Pit Privies"</span><span class="sc">~</span><span class="st">"Ablution facility &amp; Pit privies"</span>,<span class="at">.default =</span> SANITATION))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>sansubset5<span class="ot">&lt;-</span>sansubset5 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">SANITATION=</span><span class="fu">case_when</span>(SANITATION<span class="sc">==</span><span class="st">"VIPs"</span><span class="sc">~</span><span class="st">"VIP"</span>,SANITATION<span class="sc">==</span><span class="st">"Ablution Facility"</span><span class="sc">~</span><span class="st">"Ablution facility"</span>,SANITATION<span class="sc">==</span><span class="st">"Ablution Facilty"</span><span class="sc">~</span><span class="st">"Ablution facility"</span>,SANITATION<span class="sc">==</span><span class="st">"Ablution facillity"</span><span class="sc">~</span><span class="st">"Ablution facility"</span>,SANITATION<span class="sc">==</span><span class="st">"Ablution Facility &amp; VIP"</span><span class="sc">~</span><span class="st">"Ablution facility &amp; VIP"</span>,SANITATION<span class="sc">==</span><span class="st">"Ablutiion Facility"</span><span class="sc">~</span><span class="st">"Ablution facility"</span>,SANITATION<span class="sc">==</span><span class="st">"Ablution Facility &amp; VIPs"</span><span class="sc">~</span><span class="st">"Ablution facility &amp; VIP"</span>,SANITATION<span class="sc">==</span><span class="st">"Ablution Facility &amp; VIP toilets"</span><span class="sc">~</span><span class="st">"Ablution facility &amp; VIP"</span>,SANITATION<span class="sc">==</span><span class="st">"Ablution facilities &amp; Pit Privies"</span><span class="sc">~</span><span class="st">"Ablution facility &amp; Pit privies"</span>,SANITATION<span class="sc">==</span><span class="st">"Ablution facility, Pit Privies"</span><span class="sc">~</span><span class="st">"Ablution facility &amp; Pit privies"</span>,<span class="at">.default =</span> SANITATION))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
-<div class="cell" data-tal-cap="Types of sanitatioin systems provided in eThekwini municipality">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>sansubset5<span class="sc">|&gt;</span><span class="fu">gt</span>()<span class="sc">|&gt;</span><span class="fu">tab_header</span>(<span class="at">title=</span><span class="st">"Informal Settlement in eThekwini"</span>,<span class="at">subtitle=</span><span class="st">"Informal settlement"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="tbl-sansubset5" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tal-cap="Types of sanitatioin systems provided in eThekwini municipality">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl quarto-uncaptioned" id="tbl-sansubset5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;1
-</figcaption>
-<div aria-describedby="tbl-sansubset5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+</section>
+<section id="results" class="level1">
+<h1>Results</h1>
+<p><strong>?@tbl-sansubset</strong> shows the different sanitation provided in the different IS within eThekwini municipality. This data shows the number of sanitation technologies including Ablution facilities, commonly known as community ablution blocks (CAB), VIP latrines and those that are with more than a single sanitation system within the same IS. The table is further translated into a graph as seen on Figure 1.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-sansubset5</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| tal-cap: "Table 1:Types of sanitatioin systems provided in eThekwini municipality"</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>sansubset5 <span class="ot">&lt;-</span> sansubset4 <span class="sc">|&gt;</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(SANITATION)</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>sansubset5 <span class="sc">|&gt;</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">SANITATION =</span> <span class="st">"Sanitation Type"</span>,</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="st">"Frequency"</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(</span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Table 1: Types of sanitation systems provided in eThekwini municipality"</span>,</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Provisions in informal settlement"</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 <div class="cell-output-display">
-<div id="jvayvdhvhr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#jvayvdhvhr table {
+<div id="raugveitfc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#raugveitfc table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#jvayvdhvhr thead, #jvayvdhvhr tbody, #jvayvdhvhr tfoot, #jvayvdhvhr tr, #jvayvdhvhr td, #jvayvdhvhr th {
+#raugveitfc thead, #raugveitfc tbody, #raugveitfc tfoot, #raugveitfc tr, #raugveitfc td, #raugveitfc th {
   border-style: none;
 }
 
-#jvayvdhvhr p {
+#raugveitfc p {
   margin: 0;
   padding: 0;
 }
 
-#jvayvdhvhr .gt_table {
+#raugveitfc .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -248,12 +257,12 @@ Table&nbsp;1
   border-left-color: #D3D3D3;
 }
 
-#jvayvdhvhr .gt_caption {
+#raugveitfc .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#jvayvdhvhr .gt_title {
+#raugveitfc .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -265,7 +274,7 @@ Table&nbsp;1
   border-bottom-width: 0;
 }
 
-#jvayvdhvhr .gt_subtitle {
+#raugveitfc .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -277,7 +286,7 @@ Table&nbsp;1
   border-top-width: 0;
 }
 
-#jvayvdhvhr .gt_heading {
+#raugveitfc .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -289,13 +298,13 @@ Table&nbsp;1
   border-right-color: #D3D3D3;
 }
 
-#jvayvdhvhr .gt_bottom_border {
+#raugveitfc .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#jvayvdhvhr .gt_col_headings {
+#raugveitfc .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -310,7 +319,7 @@ Table&nbsp;1
   border-right-color: #D3D3D3;
 }
 
-#jvayvdhvhr .gt_col_heading {
+#raugveitfc .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -330,7 +339,7 @@ Table&nbsp;1
   overflow-x: hidden;
 }
 
-#jvayvdhvhr .gt_column_spanner_outer {
+#raugveitfc .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -342,15 +351,15 @@ Table&nbsp;1
   padding-right: 4px;
 }
 
-#jvayvdhvhr .gt_column_spanner_outer:first-child {
+#raugveitfc .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#jvayvdhvhr .gt_column_spanner_outer:last-child {
+#raugveitfc .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#jvayvdhvhr .gt_column_spanner {
+#raugveitfc .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -362,11 +371,11 @@ Table&nbsp;1
   width: 100%;
 }
 
-#jvayvdhvhr .gt_spanner_row {
+#raugveitfc .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#jvayvdhvhr .gt_group_heading {
+#raugveitfc .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -392,7 +401,7 @@ Table&nbsp;1
   text-align: left;
 }
 
-#jvayvdhvhr .gt_empty_group_heading {
+#raugveitfc .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -407,15 +416,15 @@ Table&nbsp;1
   vertical-align: middle;
 }
 
-#jvayvdhvhr .gt_from_md > :first-child {
+#raugveitfc .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#jvayvdhvhr .gt_from_md > :last-child {
+#raugveitfc .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#jvayvdhvhr .gt_row {
+#raugveitfc .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -434,7 +443,7 @@ Table&nbsp;1
   overflow-x: hidden;
 }
 
-#jvayvdhvhr .gt_stub {
+#raugveitfc .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -447,7 +456,7 @@ Table&nbsp;1
   padding-right: 5px;
 }
 
-#jvayvdhvhr .gt_stub_row_group {
+#raugveitfc .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -461,15 +470,15 @@ Table&nbsp;1
   vertical-align: top;
 }
 
-#jvayvdhvhr .gt_row_group_first td {
+#raugveitfc .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#jvayvdhvhr .gt_row_group_first th {
+#raugveitfc .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#jvayvdhvhr .gt_summary_row {
+#raugveitfc .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -479,16 +488,16 @@ Table&nbsp;1
   padding-right: 5px;
 }
 
-#jvayvdhvhr .gt_first_summary_row {
+#raugveitfc .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#jvayvdhvhr .gt_first_summary_row.thick {
+#raugveitfc .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#jvayvdhvhr .gt_last_summary_row {
+#raugveitfc .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -498,7 +507,7 @@ Table&nbsp;1
   border-bottom-color: #D3D3D3;
 }
 
-#jvayvdhvhr .gt_grand_summary_row {
+#raugveitfc .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -508,7 +517,7 @@ Table&nbsp;1
   padding-right: 5px;
 }
 
-#jvayvdhvhr .gt_first_grand_summary_row {
+#raugveitfc .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -518,7 +527,7 @@ Table&nbsp;1
   border-top-color: #D3D3D3;
 }
 
-#jvayvdhvhr .gt_last_grand_summary_row_top {
+#raugveitfc .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -528,11 +537,11 @@ Table&nbsp;1
   border-bottom-color: #D3D3D3;
 }
 
-#jvayvdhvhr .gt_striped {
+#raugveitfc .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#jvayvdhvhr .gt_table_body {
+#raugveitfc .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -541,7 +550,7 @@ Table&nbsp;1
   border-bottom-color: #D3D3D3;
 }
 
-#jvayvdhvhr .gt_footnotes {
+#raugveitfc .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -555,7 +564,7 @@ Table&nbsp;1
   border-right-color: #D3D3D3;
 }
 
-#jvayvdhvhr .gt_footnote {
+#raugveitfc .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -564,7 +573,7 @@ Table&nbsp;1
   padding-right: 5px;
 }
 
-#jvayvdhvhr .gt_sourcenotes {
+#raugveitfc .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -578,7 +587,7 @@ Table&nbsp;1
   border-right-color: #D3D3D3;
 }
 
-#jvayvdhvhr .gt_sourcenote {
+#raugveitfc .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -586,96 +595,96 @@ Table&nbsp;1
   padding-right: 5px;
 }
 
-#jvayvdhvhr .gt_left {
+#raugveitfc .gt_left {
   text-align: left;
 }
 
-#jvayvdhvhr .gt_center {
+#raugveitfc .gt_center {
   text-align: center;
 }
 
-#jvayvdhvhr .gt_right {
+#raugveitfc .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#jvayvdhvhr .gt_font_normal {
+#raugveitfc .gt_font_normal {
   font-weight: normal;
 }
 
-#jvayvdhvhr .gt_font_bold {
+#raugveitfc .gt_font_bold {
   font-weight: bold;
 }
 
-#jvayvdhvhr .gt_font_italic {
+#raugveitfc .gt_font_italic {
   font-style: italic;
 }
 
-#jvayvdhvhr .gt_super {
+#raugveitfc .gt_super {
   font-size: 65%;
 }
 
-#jvayvdhvhr .gt_footnote_marks {
+#raugveitfc .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#jvayvdhvhr .gt_asterisk {
+#raugveitfc .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#jvayvdhvhr .gt_indent_1 {
+#raugveitfc .gt_indent_1 {
   text-indent: 5px;
 }
 
-#jvayvdhvhr .gt_indent_2 {
+#raugveitfc .gt_indent_2 {
   text-indent: 10px;
 }
 
-#jvayvdhvhr .gt_indent_3 {
+#raugveitfc .gt_indent_3 {
   text-indent: 15px;
 }
 
-#jvayvdhvhr .gt_indent_4 {
+#raugveitfc .gt_indent_4 {
   text-indent: 20px;
 }
 
-#jvayvdhvhr .gt_indent_5 {
+#raugveitfc .gt_indent_5 {
   text-indent: 25px;
 }
 
-#jvayvdhvhr .katex-display {
+#raugveitfc .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#jvayvdhvhr div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#raugveitfc div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
 
-<table class="gt_table do-not-create-environment caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-bootstrap="false">
 <thead>
 <tr class="gt_heading header">
-<td colspan="2" class="gt_heading gt_title gt_font_normal">Informal Settlement in eThekwini</td>
+<td colspan="2" class="gt_heading gt_title gt_font_normal">Table 1: Types of sanitation systems provided in eThekwini municipality</td>
 </tr>
 <tr class="gt_heading even">
-<td colspan="2" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Informal settlement</td>
+<td colspan="2" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Provisions in informal settlement</td>
 </tr>
 <tr class="gt_col_headings header">
-<th id="SANITATION" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">SANITATION</th>
-<th id="n" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">n</th>
+<th id="SANITATION" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Sanitation Type</th>
+<th id="n" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Frequency</th>
 </tr>
 </thead>
 <tbody class="gt_table_body">
 <tr class="odd">
-<td class="gt_row gt_left" headers="SANITATION">Ablution facility</td>
+<td class="gt_row gt_left" headers="SANITATION">Ablutiion Facility</td>
 <td class="gt_row gt_right" headers="n">1</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="SANITATION">Ablution facility</td>
+<td class="gt_row gt_left" headers="SANITATION">Ablution Facility</td>
 <td class="gt_row gt_right" headers="n">210</td>
 </tr>
 <tr class="odd">
@@ -683,15 +692,15 @@ Table&nbsp;1
 <td class="gt_row gt_right" headers="n">21</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="SANITATION">Ablution facility &amp; VIP</td>
+<td class="gt_row gt_left" headers="SANITATION">Ablution Facility &amp; VIP</td>
 <td class="gt_row gt_right" headers="n">1</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="SANITATION">Ablution facility &amp; VIP</td>
+<td class="gt_row gt_left" headers="SANITATION">Ablution Facility &amp; VIP toilets</td>
 <td class="gt_row gt_right" headers="n">1</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="SANITATION">Ablution facility &amp; VIP</td>
+<td class="gt_row gt_left" headers="SANITATION">Ablution Facility &amp; VIPs</td>
 <td class="gt_row gt_right" headers="n">3</td>
 </tr>
 <tr class="odd">
@@ -699,11 +708,11 @@ Table&nbsp;1
 <td class="gt_row gt_right" headers="n">1</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="SANITATION">Ablution facility</td>
+<td class="gt_row gt_left" headers="SANITATION">Ablution Facilty</td>
 <td class="gt_row gt_right" headers="n">8</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="SANITATION">Ablution facility &amp; Pit privies</td>
+<td class="gt_row gt_left" headers="SANITATION">Ablution facilities &amp; Pit Privies</td>
 <td class="gt_row gt_right" headers="n">1</td>
 </tr>
 <tr class="even">
@@ -723,11 +732,11 @@ Table&nbsp;1
 <td class="gt_row gt_right" headers="n">1</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="SANITATION">Ablution facility &amp; Pit privies</td>
+<td class="gt_row gt_left" headers="SANITATION">Ablution facility, Pit Privies</td>
 <td class="gt_row gt_right" headers="n">1</td>
 </tr>
 <tr class="odd">
-<td class="gt_row gt_left" headers="SANITATION">Ablution facility</td>
+<td class="gt_row gt_left" headers="SANITATION">Ablution facillity</td>
 <td class="gt_row gt_right" headers="n">1</td>
 </tr>
 <tr class="even">
@@ -755,7 +764,7 @@ Table&nbsp;1
 <td class="gt_row gt_right" headers="n">2</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="SANITATION">VIP</td>
+<td class="gt_row gt_left" headers="SANITATION">VIPs</td>
 <td class="gt_row gt_right" headers="n">22</td>
 </tr>
 <tr class="odd">
@@ -768,12 +777,108 @@ Table&nbsp;1
 </div>
 </div>
 </div>
+<p>Figure 1 is a display of the sanitation types provided ineThekwini municipality within the ISP.</p>
+<div class="cell">
+<details class="code-fold">
+<summary>Sanitation Pie Chart with Frequencies and Distinct Colours</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stderr">
+<pre><code>Loading required package: viridisLite</code></pre>
+</div>
+<details class="code-fold">
+<summary>Sanitation Pie Chart with Frequencies and Distinct Colours</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare data</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>sansubset5 <span class="ot">&lt;-</span> sansubset5 <span class="sc">%&gt;%</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n)) <span class="sc">%&gt;%</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">id =</span> <span class="fu">row_number</span>(),                               <span class="co"># numeric ID if needed</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend_label =</span> <span class="fu">paste0</span>(id, <span class="st">": "</span>, SANITATION),     <span class="co"># legend label</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">fraction =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n),                           <span class="co"># fraction for pie</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">ypos =</span> <span class="fu">cumsum</span>(fraction) <span class="sc">-</span> <span class="fl">0.5</span> <span class="sc">*</span> fraction        <span class="co"># position for labels</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate distinct colours for all slices</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>num_categories <span class="ot">&lt;-</span> <span class="fu">nrow</span>(sansubset5)</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>colors <span class="ot">&lt;-</span> <span class="fu">viridis</span>(num_categories, <span class="at">option =</span> <span class="st">"C"</span>)    <span class="co"># bright colour-blind-friendly</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Pie chart</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sansubset5, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> fraction, <span class="at">fill =</span> legend_label)) <span class="sc">+</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">y =</span> ypos, <span class="at">label =</span> n), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span>   <span class="co"># add numbers on slices</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="at">theta =</span> <span class="st">"y"</span>) <span class="sc">+</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> colors, <span class="at">name =</span> <span class="st">"Sanitation Types"</span>) <span class="sc">+</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Types of sanitation systems provided in eThekwini municipality"</span>,</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Provisions in informal settlements"</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">6</span>),</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>)</span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
-<pre><code></code></pre>
-<p><br>
-The <code>echo: false</code> option disables the printing of code (only output is displayed).</p>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Sanitation Horizontal Bar Chart with Legend at Bottom</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort by frequency descending and create numeric IDs + labels</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>sansubset5 <span class="ot">&lt;-</span> sansubset5 <span class="sc">%&gt;%</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n)) <span class="sc">%&gt;%</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">id =</span> <span class="fu">row_number</span>(),                     <span class="co"># numeric x-axis</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend_label =</span> <span class="fu">paste0</span>(id, <span class="st">": "</span>, SANITATION, <span class="st">" ("</span>, n, <span class="st">")"</span>)</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate colours for all categories</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>num_categories <span class="ot">&lt;-</span> <span class="fu">nrow</span>(sansubset5)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>colors <span class="ot">&lt;-</span> <span class="fu">viridis</span>(num_categories, <span class="at">option =</span> <span class="st">"C"</span>)</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot horizontal bar chart with legend at bottom</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sansubset5, <span class="fu">aes</span>(<span class="at">x =</span> id, <span class="at">y =</span> n, <span class="at">fill =</span> legend_label)) <span class="sc">+</span></span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> n), <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.1</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span>  <span class="co"># numbers on bars</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> colors, <span class="at">name =</span> <span class="st">"Sanitation Types"</span>) <span class="sc">+</span></span>
+<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> sansubset5<span class="sc">$</span>id) <span class="sc">+</span>         <span class="co"># numeric x-axis</span></span>
+<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Sanitation Type ID"</span>,</span>
+<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Frequency"</span>,</span>
+<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Types of sanitation systems provided in eThekwini municipality"</span>,</span>
+<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Provisions in informal settlements"</span></span>
+<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span>                                       <span class="co"># horizontal bars</span></span>
+<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,                        <span class="co"># legend at bottom</span></span>
+<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">3</span>),             <span class="co"># small legend font</span></span>
+<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">3</span>)</span>
+<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="fu">max</span>(sansubset5<span class="sc">$</span>n) <span class="sc">*</span> <span class="fl">1.1</span>)                   <span class="co"># add space for numbers outside bars</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="discussion-and-conclusion" class="level1">
+<h1>Discussion and conclusion</h1>
 <p>The extension of basic sanitation services to previously unserved informal settlements has been shown to yield <strong>substantial improvements in health and living conditions</strong>. Empirical studies in South Africa demonstrate that access to sanitation significantly reduces exposure to faecal contamination, lowers the prevalence of diarrhoeal disease, and improves environmental hygiene in densely populated settlements (Graham &amp; Polizzotto, 2013; Tumwebaze &amp; Mosler, 2015). Beyond health outcomes, sanitation access contributes to improved <strong>quality of life and social wellbeing</strong>, particularly by enhancing safety, privacy, and dignity for women and children, who are disproportionately affected by inadequate sanitation (Sutherland et al., 2014).</p>
 <p>Project description</p>
 <p>I am using this data to categorise the services provided by the municipality within the settlements and to see if there plans to improve service delivery.</p>

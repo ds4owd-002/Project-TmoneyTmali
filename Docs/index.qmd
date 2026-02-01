@@ -36,26 +36,38 @@ library(readr)
 library(janitor) 
 library(tidyverse)
 library(markdown)
+library(ggthemes)
 ```
 
 ```{r}
-read_csv (here::here("Data /raw/Durban_Informal_Settlement_Programme.csv") ,
-           show_col_types = FALSE) 
+#| code-fold: true
+#| code-summary: "Show code"
+
+eis_data <- suppressMessages(read_csv (here::here("Data /raw/Durban_Informal_Settlement_Programme.csv"),show_col_types = FALSE), invisible(eis_data))
 ```
 
 ```{r}
+#| code-fold: true
+#| code-summary: "Code"
+
 eis_raw<-read_csv (here::here("Data /raw/Durban_Informal_Settlement_Programme.csv") ,
            show_col_types = FALSE)
 
 eis<-read_csv (here::here("Data /raw/Durban_Informal_Settlement_Programme.csv") ,
            show_col_types = FALSE)
+
+#between chunk 2 and chunk 3, i am not sure which code is working and i am making a decision to keep them both. 
 ```
 
 ```{r}
+#| code-fold: true
+#| code-summary: "Code"
 sanitation_units<- eis |>mutate(San_units=Shape__Length/100)
 ```
 
 ```{r}
+#| code-fold: true
+#| code-summary: "Code"
 sanunitable<-sanitation_units |>relocate(San_units,.after=STREETNAME)
 
 sanunitable<-sanunitable |>relocate(ALT_NAME,.after=LONGITUDE)
@@ -70,33 +82,156 @@ sansubset<-sanunitable[1:566,1:10]
 ```
 
 ```{r}
+#| code-fold: true
+#| code-summary: "Code"
 sansubset2<-sansubset|>filter(SANITATION!="TBC")
 sansubset3<-sansubset2|>filter(WATER_SUPP!="TBC")
 sansubset4<-sansubset3|>filter(ELECTRIC_2!="TBC")
 ```
 
 ```{r}
-
+#| code-fold: true
+#| code-summary: "Code"
+#| results: hide
 sansubset5<-sansubset4 %>% count(SANITATION)
-sansubset5|>count(SANITATION)
-```
-
-```{r}
-sansubset5<-sansubset5 %>% mutate(SANITATION=case_when(SANITATION=="VIPs"~"VIP",SANITATION=="Ablution Facility"~"Ablution facility",SANITATION=="Ablution Facilty"~"Ablution facility",SANITATION=="Ablution facillity"~"Ablution facility",SANITATION=="Ablution Facility & VIP"~"Ablution facility & VIP",SANITATION=="Ablutiion Facility"~"Ablution facility",SANITATION=="Ablution Facility & VIPs"~"Ablution facility & VIP",SANITATION=="Ablution Facility & VIP toilets"~"Ablution facility & VIP",SANITATION=="Ablution facilities & Pit Privies"~"Ablution facility & Pit privies",SANITATION=="Ablution facility, Pit Privies"~"Ablution facility & Pit privies",.default = SANITATION))
-```
-
-```{r}
-#| label: tbl-sansubset5
-#| tal-cap: "Types of sanitatioin systems provided in eThekwini municipality"
-
-sansubset5|>gt()|>tab_header(title="Informal Settlement in eThekwini",subtitle="Informal settlement")
+sansubset5 %>%
+  gt() %>%
+  cols_label(
+    SANITATION = "Sanitation Type",
+    n = "Frequency"
+  )
 ```
 
 ```         
 ```
 
-\
-The `echo: false` option disables the printing of code (only output is displayed).
+```{r}
+#| code-fold: true
+#| code-summary: "Code"
+sansubset5<-sansubset5 %>% mutate(SANITATION=case_when(SANITATION=="VIPs"~"VIP",SANITATION=="Ablution Facility"~"Ablution facility",SANITATION=="Ablution Facilty"~"Ablution facility",SANITATION=="Ablution facillity"~"Ablution facility",SANITATION=="Ablution Facility & VIP"~"Ablution facility & VIP",SANITATION=="Ablutiion Facility"~"Ablution facility",SANITATION=="Ablution Facility & VIPs"~"Ablution facility & VIP",SANITATION=="Ablution Facility & VIP toilets"~"Ablution facility & VIP",SANITATION=="Ablution facilities & Pit Privies"~"Ablution facility & Pit privies",SANITATION=="Ablution facility, Pit Privies"~"Ablution facility & Pit privies",.default = SANITATION))
+```
+
+```{r}
+
+```
+
+# Results
+
+@tbl-sansubset shows the different sanitation provided in the different IS within eThekwini municipality. This data shows the number of sanitation technologies including Ablution facilities, commonly known as community ablution blocks (CAB), VIP latrines and those that are with more than a single sanitation system within the same IS. The table is further translated into a graph as seen on Figure 1.
+
+```{r}
+#| code-fold: true
+#| code-summary: "Code"
+
+#| label: tbl-sansubset5
+#| tal-cap: "Table 1:Types of sanitatioin systems provided in eThekwini municipality"
+
+sansubset5 <- sansubset4 |>
+  count(SANITATION)
+
+sansubset5 |>
+  gt() |>
+  cols_label(
+    SANITATION = "Sanitation Type",
+    n = "Frequency"
+  ) |>
+  tab_header(
+    title = "Table 1: Types of sanitation systems provided in eThekwini municipality",
+    subtitle = "Provisions in informal settlement"
+  )
+
+
+
+```
+
+Figure 1 is a display of the sanitation types provided ineThekwini municipality within the ISP.
+
+```{r}
+#| code-fold: true
+#| code-summary: "Sanitation Pie Chart with Frequencies and Distinct Colours"
+
+library(ggplot2)
+library(dplyr)
+library(viridis)
+
+# Prepare data
+sansubset5 <- sansubset5 %>%
+  arrange(desc(n)) %>%
+  mutate(
+    id = row_number(),                               # numeric ID if needed
+    legend_label = paste0(id, ": ", SANITATION),     # legend label
+    fraction = n / sum(n),                           # fraction for pie
+    ypos = cumsum(fraction) - 0.5 * fraction        # position for labels
+  )
+
+# Generate distinct colours for all slices
+num_categories <- nrow(sansubset5)
+colors <- viridis(num_categories, option = "C")    # bright colour-blind-friendly
+
+# Pie chart
+ggplot(sansubset5, aes(x = "", y = fraction, fill = legend_label)) +
+  geom_col(color = "white") +
+  geom_text(aes(y = ypos, label = n), size = 3) +   # add numbers on slices
+  coord_polar(theta = "y") +
+  scale_fill_manual(values = colors, name = "Sanitation Types") +
+  labs(
+    title = "Types of sanitation systems provided in eThekwini municipality",
+    subtitle = "Provisions in informal settlements"
+  ) +
+  theme_void() +
+  theme(
+    legend.text = element_text(size = 6),
+    legend.title = element_text(size = 8)
+  )
+
+
+```
+
+```{r}
+#| code-fold: true
+#| code-summary: "Sanitation Horizontal Bar Chart with Legend at Bottom"
+
+library(ggplot2)
+library(dplyr)
+library(viridis)
+
+# Sort by frequency descending and create numeric IDs + labels
+sansubset5 <- sansubset5 %>%
+  arrange(desc(n)) %>%
+  mutate(
+    id = row_number(),                     # numeric x-axis
+    legend_label = paste0(id, ": ", SANITATION, " (", n, ")")
+  )
+
+# Generate colours for all categories
+num_categories <- nrow(sansubset5)
+colors <- viridis(num_categories, option = "C")
+
+# Plot horizontal bar chart with legend at bottom
+ggplot(sansubset5, aes(x = id, y = n, fill = legend_label)) +
+  geom_col() +
+  geom_text(aes(label = n), hjust = -0.1, size = 2) +  # numbers on bars
+  scale_fill_manual(values = colors, name = "Sanitation Types") +
+  scale_x_continuous(breaks = sansubset5$id) +         # numeric x-axis
+  labs(
+    x = "Sanitation Type ID",
+    y = "Frequency",
+    title = "Types of sanitation systems provided in eThekwini municipality",
+    subtitle = "Provisions in informal settlements"
+  ) +
+  coord_flip() +                                       # horizontal bars
+  theme_minimal() +
+  theme(
+    legend.position = "bottom",                        # legend at bottom
+    legend.text = element_text(size = 5),             # small legend font
+    legend.title = element_text(size = 5)
+  ) +
+  ylim(0, max(sansubset5$n) * 1.1)                   # add space for numbers outside bars
+
+
+```
+
+# Discussion and conclusion
 
 The extension of basic sanitation services to previously unserved informal settlements has been shown to yield **substantial improvements in health and living conditions**. Empirical studies in South Africa demonstrate that access to sanitation significantly reduces exposure to faecal contamination, lowers the prevalence of diarrhoeal disease, and improves environmental hygiene in densely populated settlements (Graham & Polizzotto, 2013; Tumwebaze & Mosler, 2015). Beyond health outcomes, sanitation access contributes to improved **quality of life and social wellbeing**, particularly by enhancing safety, privacy, and dignity for women and children, who are disproportionately affected by inadequate sanitation (Sutherland et al., 2014).
 

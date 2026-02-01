@@ -57,7 +57,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="index_files/libs/clipboard/clipboard.min.js"></script>
@@ -76,10 +96,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </head>
 
-<body class="fullcontent quarto-light">
+<body class="quarto-light">
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
+  <li><a href="#discussion-and-conclusion" id="toc-discussion-and-conclusion" class="nav-link" data-scroll-target="#discussion-and-conclusion">Discussion and conclusion</a>
+  <ul class="collapse">
+  <li><a href="#closing-remarks" id="toc-closing-remarks" class="nav-link" data-scroll-target="#closing-remarks">Closing remarks</a></li>
+  </ul></li>
+  </ul>
+</nav>
+</div>
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
@@ -115,9 +149,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="introduction" class="level1">
 <h1>Introduction</h1>
-<p>Access to safe and adequate sanitation is a human right that is linked to human dignity, environmental protection, a conducive environemnt that positively impacts the livelihood of every hhuman being in the world. As a results, it has been prioritised under Sustainable Development Goal 6 (SDG 6), which calls for equitable access to sanitation and hygiene for all by 2030 (United Nations, 2015). In South Africa, this has become a basic human right recognised through Section 24 of the constitution. However, rapid urbanisation and persistent socio-economic inequality have resulted in the continued growth of informal settlements, particularly in metropolitan municipalities such as eThekwini, where sanitation provision remains a critical service delivery challenge.</p>
-<p>The municipaity of eThekwini recognised this challenge and was pressured by the need to address large sanitation backlogs in areas with high population density, informal housing, and difficult terrain. informal settlements were recognised and given communal ablution blocks (CABs) facilities, and on-site sanitation technologies such as ventilated improved pit (VIP) latrines (Roma et al., 2013; Buckley et al., 2008). The CABs and VIPs were built temporarilly whilst improving sanitation structures in Durban that will abe able to accomoadate the now desely populated areas as a results of city migration (Roma et al., 2013; Buckley et al., 2008).</p>
-<p>The National Upgrading Support Programme (NUSP) in eThekwini Municipality has increasingly aligned its mission in increasing sanitation for the informal settlement and previously disadvantahed communities. This is a tailored approach that will consider site specific environmental risks, climate resilience, and long-term service sustainability (Roma &amp; Buckley, 2016). In line with SDG 6.2, municipal plans emphasise not only increased coverage, but also improving the quality of service delivery with more durable and safely managed sanitation systems.</p>
+<p>Access to safe and adequate sanitation is a human right that is linked to human dignity, environmental protection, a conducive environemnt that positively impacts the livelihood of every human being in the world. As a results, it has been prioritised under Sustainable Development Goal 6 (SDG 6), which calls for equitable access to sanitation and hygiene for all by 2030. In South Africa, this has become a basic human right recognised through Section 24 of the constitution. However, rapid urbanisation and persistent socio-economic inequality have resulted in the continued growth of informal settlements, particularly in metropolitan municipalities such as eThekwini, where sanitation provision remains a critical service delivery challenge.</p>
+<p>The municipaity of eThekwini recognised this challenge and was pressured by the need to address large sanitation backlogs in areas with high population density, informal housing, and difficult terrain. informal settlements were recognised and given communal ablution blocks (CABs) facilities, and on-site sanitation technologies such as ventilated improved pit (VIP) latrines <span class="citation" data-cites="flores2009">(<a href="#ref-flores2009" role="doc-biblioref">Flores, Buckley, and Fenner 2009</a>)</span>. The CABs and VIPs were built temporarilly whilst improving sanitation structures in Durban that will abe able to accomoadate the now desely populated areas as a results of city migration <span class="citation" data-cites="Bond2013 Bhagwan2008">(<a href="#ref-Bond2013" role="doc-biblioref">Bond et al. 2013</a>; <a href="#ref-Bhagwan2008" role="doc-biblioref">Bhagwan et al. 2008</a>)</span>.</p>
+<p>The National Upgrading Support Programme (NUSP) in eThekwini Municipality has increasingly aligned its mission in increasing sanitation for the informal settlement and previously disadvantahed communities. This is a tailored approach that will consider site specific environmental risks, climate resilience, and long-term service sustainability <span class="citation" data-cites="simiyu2015">(<a href="#ref-simiyu2015" role="doc-biblioref">Simiyu 2015</a>)</span>. In line with SDG 6.2, municipal plans emphasise not only increased coverage, but also improving the quality of service delivery with more durable and safely managed sanitation systems.</p>
+<p>The extension of basic sanitation services to previously unserved informal settlements has been shown to yield substantial improvements in health and living conditions. Empirical studies in South Africa demonstrate that access to sanitation significantly reduces exposure to faecal contamination, lowers the prevalence of diarrhoeal disease, and improves environmental hygiene in densely populated settlements (Graham &amp; Polizzotto, 2013; Tumwebaze &amp; Mosler, 2015). Beyond health outcomes, sanitation access contributes to improved quality of life and social wellbeing, particularly by enhancing safety, privacy, and dignity for women and children, who are disproportionately affected by inadequate sanitation <span class="citation" data-cites="Sutherland2021">(<a href="#ref-Sutherland2021" role="doc-biblioref">Sutherland et al. 2021</a>)</span>.</p>
 <p>The eThekwini municipality published its current status of sanitation provision within informal settlements in eThekwini in 2022. This is to be used through city planning in noting the types, distribution, and scale of sanitation services, and how future projects can be implemented in order to meet the objectives of SDG 6 in an urban informal settlement context.</p>
 </section>
 <section id="methods" class="level1">
@@ -132,106 +167,108 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>eis_raw<span class="ot">&lt;-</span><span class="fu">read_csv</span> (here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"Data /raw/Durban_Informal_Settlement_Programme.csv"</span>) ,</span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>eis<span class="ot">&lt;-</span><span class="fu">read_csv</span> (here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"Data /raw/Durban_Informal_Settlement_Programme.csv"</span>) ,</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>eis<span class="ot">&lt;-</span><span class="fu">read_csv</span> (here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"Data /raw/Durban_Informal_Settlement_Programme.csv"</span>) ,</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">show_col_types =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">#between chunk 2 and chunk 3, i am not sure which code is working and i am making a decision to keep them both. </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">#between chunk 2 and chunk 3, i am not sure which code is working and i am making a decision to keep them both.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>sanitation_units<span class="ot">&lt;-</span> eis <span class="sc">|&gt;</span><span class="fu">mutate</span>(<span class="at">San_units=</span>Shape__Length<span class="sc">/</span><span class="dv">100</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>eis_raw<span class="ot">&lt;-</span><span class="fu">read_csv</span> (here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"Data /raw/Durban_Informal_Settlement_Programme.csv"</span>),</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>           <span class="at">show_col_types =</span> <span class="cn">FALSE</span> )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sanunitable<span class="ot">&lt;-</span>sanitation_units <span class="sc">|&gt;</span><span class="fu">relocate</span>(San_units,<span class="at">.after=</span>STREETNAME)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>sanunitable<span class="ot">&lt;-</span>sanunitable <span class="sc">|&gt;</span><span class="fu">relocate</span>(ALT_NAME,<span class="at">.after=</span>LONGITUDE)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>sanunitable<span class="ot">&lt;-</span>sanunitable <span class="sc">|&gt;</span><span class="fu">relocate</span>(WARD_S,<span class="at">.after=</span>LONGITUDE)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>sanunitable<span class="ot">&lt;-</span>sanunitable <span class="sc">|&gt;</span><span class="fu">relocate</span>(ALT_NAME,<span class="at">.after=</span>LONGITUDE)</span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>sanunitable<span class="ot">&lt;-</span>sanunitable <span class="sc">|&gt;</span><span class="fu">relocate</span>(SANITATION,<span class="at">.after=</span>STREETNAME)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>sanunitable<span class="ot">&lt;-</span>sanunitable <span class="sc">|&gt;</span><span class="fu">relocate</span>(WATER_SUPP,<span class="at">.after=</span>PLANNING_U)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>sanunitable<span class="ot">&lt;-</span>sanunitable <span class="sc">|&gt;</span><span class="fu">relocate</span>(ELECTRIC_2,<span class="at">.after=</span>WATER_SUPP)</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>sanunitable<span class="ot">&lt;-</span>sanunitable <span class="sc">|&gt;</span><span class="fu">relocate</span>(REGION,<span class="at">.after=</span>WATER_SUPP)</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>sanunitable<span class="ot">&lt;-</span>sanunitable <span class="sc">|&gt;</span><span class="fu">relocate</span>(REFUSE,<span class="at">.after=</span>ELECTRIC_2)</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>sansubset<span class="ot">&lt;-</span>sanunitable[<span class="dv">1</span><span class="sc">:</span><span class="dv">566</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>sanitation_units<span class="ot">&lt;-</span> eis <span class="sc">|&gt;</span><span class="fu">mutate</span>(<span class="at">San_units=</span>Shape__Length<span class="sc">/</span><span class="dv">100</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sansubset2<span class="ot">&lt;-</span>sansubset<span class="sc">|&gt;</span><span class="fu">filter</span>(SANITATION<span class="sc">!=</span><span class="st">"TBC"</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>sansubset3<span class="ot">&lt;-</span>sansubset2<span class="sc">|&gt;</span><span class="fu">filter</span>(WATER_SUPP<span class="sc">!=</span><span class="st">"TBC"</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>sansubset4<span class="ot">&lt;-</span>sansubset3<span class="sc">|&gt;</span><span class="fu">filter</span>(ELECTRIC_2<span class="sc">!=</span><span class="st">"TBC"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>sanunitable<span class="ot">&lt;-</span>sanitation_units <span class="sc">|&gt;</span><span class="fu">relocate</span>(San_units,<span class="at">.after=</span>STREETNAME)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>sanunitable<span class="ot">&lt;-</span>sanunitable <span class="sc">|&gt;</span><span class="fu">relocate</span>(ALT_NAME,<span class="at">.after=</span>LONGITUDE)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>sanunitable<span class="ot">&lt;-</span>sanunitable <span class="sc">|&gt;</span><span class="fu">relocate</span>(WARD_S,<span class="at">.after=</span>LONGITUDE)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>sanunitable<span class="ot">&lt;-</span>sanunitable <span class="sc">|&gt;</span><span class="fu">relocate</span>(ALT_NAME,<span class="at">.after=</span>LONGITUDE)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>sanunitable<span class="ot">&lt;-</span>sanunitable <span class="sc">|&gt;</span><span class="fu">relocate</span>(SANITATION,<span class="at">.after=</span>STREETNAME)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>sanunitable<span class="ot">&lt;-</span>sanunitable <span class="sc">|&gt;</span><span class="fu">relocate</span>(WATER_SUPP,<span class="at">.after=</span>PLANNING_U)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>sanunitable<span class="ot">&lt;-</span>sanunitable <span class="sc">|&gt;</span><span class="fu">relocate</span>(ELECTRIC_2,<span class="at">.after=</span>WATER_SUPP)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>sanunitable<span class="ot">&lt;-</span>sanunitable <span class="sc">|&gt;</span><span class="fu">relocate</span>(REGION,<span class="at">.after=</span>WATER_SUPP)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>sanunitable<span class="ot">&lt;-</span>sanunitable <span class="sc">|&gt;</span><span class="fu">relocate</span>(REFUSE,<span class="at">.after=</span>ELECTRIC_2)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>sansubset<span class="ot">&lt;-</span>sanunitable[<span class="dv">1</span><span class="sc">:</span><span class="dv">566</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>] </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sansubset5<span class="ot">&lt;-</span>sansubset4 <span class="sc">%&gt;%</span> <span class="fu">count</span>(SANITATION)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>sansubset5 <span class="sc">%&gt;%</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">SANITATION =</span> <span class="st">"Sanitation Type"</span>,</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="st">"Frequency"</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>sansubset2<span class="ot">&lt;-</span>sansubset<span class="sc">|&gt;</span><span class="fu">filter</span>(SANITATION<span class="sc">!=</span><span class="st">"TBC"</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>sansubset3<span class="ot">&lt;-</span>sansubset2<span class="sc">|&gt;</span><span class="fu">filter</span>(WATER_SUPP<span class="sc">!=</span><span class="st">"TBC"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>sansubset4<span class="ot">&lt;-</span>sansubset3<span class="sc">|&gt;</span><span class="fu">filter</span>(ELECTRIC_2<span class="sc">!=</span><span class="st">"TBC"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<div class="cell">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sansubset5<span class="ot">&lt;-</span>sansubset4 <span class="sc">%&gt;%</span> <span class="fu">count</span>(SANITATION)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>sansubset5 <span class="sc">%&gt;%</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">SANITATION =</span> <span class="st">"Sanitation Type"</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="st">"Frequency"</span>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 <pre><code></code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>sansubset5<span class="ot">&lt;-</span>sansubset5 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">SANITATION=</span><span class="fu">case_when</span>(SANITATION<span class="sc">==</span><span class="st">"VIPs"</span><span class="sc">~</span><span class="st">"VIP"</span>,SANITATION<span class="sc">==</span><span class="st">"Ablution Facility"</span><span class="sc">~</span><span class="st">"Ablution facility"</span>,SANITATION<span class="sc">==</span><span class="st">"Ablution Facilty"</span><span class="sc">~</span><span class="st">"Ablution facility"</span>,SANITATION<span class="sc">==</span><span class="st">"Ablution facillity"</span><span class="sc">~</span><span class="st">"Ablution facility"</span>,SANITATION<span class="sc">==</span><span class="st">"Ablution Facility &amp; VIP"</span><span class="sc">~</span><span class="st">"Ablution facility &amp; VIP"</span>,SANITATION<span class="sc">==</span><span class="st">"Ablutiion Facility"</span><span class="sc">~</span><span class="st">"Ablution facility"</span>,SANITATION<span class="sc">==</span><span class="st">"Ablution Facility &amp; VIPs"</span><span class="sc">~</span><span class="st">"Ablution facility &amp; VIP"</span>,SANITATION<span class="sc">==</span><span class="st">"Ablution Facility &amp; VIP toilets"</span><span class="sc">~</span><span class="st">"Ablution facility &amp; VIP"</span>,SANITATION<span class="sc">==</span><span class="st">"Ablution facilities &amp; Pit Privies"</span><span class="sc">~</span><span class="st">"Ablution facility &amp; Pit privies"</span>,SANITATION<span class="sc">==</span><span class="st">"Ablution facility, Pit Privies"</span><span class="sc">~</span><span class="st">"Ablution facility &amp; Pit privies"</span>,<span class="at">.default =</span> SANITATION))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>sansubset5<span class="ot">&lt;-</span>sansubset5 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">SANITATION=</span><span class="fu">case_when</span>(SANITATION<span class="sc">==</span><span class="st">"VIPs"</span><span class="sc">~</span><span class="st">"VIP"</span>,SANITATION<span class="sc">==</span><span class="st">"Ablution Facility"</span><span class="sc">~</span><span class="st">"Ablution facility"</span>,SANITATION<span class="sc">==</span><span class="st">"Ablution Facilty"</span><span class="sc">~</span><span class="st">"Ablution facility"</span>,SANITATION<span class="sc">==</span><span class="st">"Ablution facillity"</span><span class="sc">~</span><span class="st">"Ablution facility"</span>,SANITATION<span class="sc">==</span><span class="st">"Ablution Facility &amp; VIP"</span><span class="sc">~</span><span class="st">"Ablution facility &amp; VIP"</span>,SANITATION<span class="sc">==</span><span class="st">"Ablutiion Facility"</span><span class="sc">~</span><span class="st">"Ablution facility"</span>,SANITATION<span class="sc">==</span><span class="st">"Ablution Facility &amp; VIPs"</span><span class="sc">~</span><span class="st">"Ablution facility &amp; VIP"</span>,SANITATION<span class="sc">==</span><span class="st">"Ablution Facility &amp; VIP toilets"</span><span class="sc">~</span><span class="st">"Ablution facility &amp; VIP"</span>,SANITATION<span class="sc">==</span><span class="st">"Ablution facilities &amp; Pit Privies"</span><span class="sc">~</span><span class="st">"Ablution facility &amp; Pit privies"</span>,SANITATION<span class="sc">==</span><span class="st">"Ablution facility, Pit Privies"</span><span class="sc">~</span><span class="st">"Ablution facility &amp; Pit privies"</span>,<span class="at">.default =</span> SANITATION))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
 </section>
 <section id="results" class="level1">
 <h1>Results</h1>
-<p><strong>?@tbl-sansubset</strong> shows the different sanitation provided in the different IS within eThekwini municipality. This data shows the number of sanitation technologies including Ablution facilities, commonly known as community ablution blocks (CAB), VIP latrines and those that are with more than a single sanitation system within the same IS. The table is further translated into a graph as seen on Figure 1.</p>
+<p>Below <strong>?@tbl-sansubset5</strong> shows the different sanitation provided in the different IS within eThekwini municipality. This data shows the number of sanitation technologies including Ablution facilities, commonly known as community ablution blocks (CAB), VIP latrines and those that are with more than a single sanitation system within the same IS. The table is further translated into a graph as seen on Figure 1.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-sansubset5</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| tal-cap: "Table 1:Types of sanitatioin systems provided in eThekwini municipality"</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>sansubset5 <span class="ot">&lt;-</span> sansubset4 <span class="sc">|&gt;</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(SANITATION)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>sansubset5 <span class="sc">|&gt;</span></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">SANITATION =</span> <span class="st">"Sanitation Type"</span>,</span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="st">"Frequency"</span></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Table 1: Types of sanitation systems provided in eThekwini municipality"</span>,</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Provisions in informal settlement"</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: tbl-sansubset5</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#| tbl-cap: "Types of sanitation systems provided in eThekwini municipality"</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>sansubset5 <span class="ot">&lt;-</span> sansubset4 <span class="sc">|&gt;</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(SANITATION)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>sansubset5 <span class="sc">|&gt;</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>() <span class="sc">|&gt;</span></span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">SANITATION =</span> <span class="st">"Sanitation Type"</span>,</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">n =</span> <span class="st">"Frequency"</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">|&gt;</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_header</span>(</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Table 1: Types of sanitation systems provided in eThekwini municipality"</span>,</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Provisions in informal settlement"</span>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
-<div id="raugveitfc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#raugveitfc table {
+<div id="yshnrdvurn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#yshnrdvurn table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#raugveitfc thead, #raugveitfc tbody, #raugveitfc tfoot, #raugveitfc tr, #raugveitfc td, #raugveitfc th {
+#yshnrdvurn thead, #yshnrdvurn tbody, #yshnrdvurn tfoot, #yshnrdvurn tr, #yshnrdvurn td, #yshnrdvurn th {
   border-style: none;
 }
 
-#raugveitfc p {
+#yshnrdvurn p {
   margin: 0;
   padding: 0;
 }
 
-#raugveitfc .gt_table {
+#yshnrdvurn .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -257,12 +294,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-left-color: #D3D3D3;
 }
 
-#raugveitfc .gt_caption {
+#yshnrdvurn .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#raugveitfc .gt_title {
+#yshnrdvurn .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -274,7 +311,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-width: 0;
 }
 
-#raugveitfc .gt_subtitle {
+#yshnrdvurn .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -286,7 +323,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-width: 0;
 }
 
-#raugveitfc .gt_heading {
+#yshnrdvurn .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -298,13 +335,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#raugveitfc .gt_bottom_border {
+#yshnrdvurn .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#raugveitfc .gt_col_headings {
+#yshnrdvurn .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -319,7 +356,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#raugveitfc .gt_col_heading {
+#yshnrdvurn .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -339,7 +376,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#raugveitfc .gt_column_spanner_outer {
+#yshnrdvurn .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -351,15 +388,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 4px;
 }
 
-#raugveitfc .gt_column_spanner_outer:first-child {
+#yshnrdvurn .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#raugveitfc .gt_column_spanner_outer:last-child {
+#yshnrdvurn .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#raugveitfc .gt_column_spanner {
+#yshnrdvurn .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -371,11 +408,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 100%;
 }
 
-#raugveitfc .gt_spanner_row {
+#yshnrdvurn .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#raugveitfc .gt_group_heading {
+#yshnrdvurn .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -401,7 +438,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   text-align: left;
 }
 
-#raugveitfc .gt_empty_group_heading {
+#yshnrdvurn .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -416,15 +453,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: middle;
 }
 
-#raugveitfc .gt_from_md > :first-child {
+#yshnrdvurn .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#raugveitfc .gt_from_md > :last-child {
+#yshnrdvurn .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#raugveitfc .gt_row {
+#yshnrdvurn .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -443,7 +480,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   overflow-x: hidden;
 }
 
-#raugveitfc .gt_stub {
+#yshnrdvurn .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -456,7 +493,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#raugveitfc .gt_stub_row_group {
+#yshnrdvurn .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -470,15 +507,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   vertical-align: top;
 }
 
-#raugveitfc .gt_row_group_first td {
+#yshnrdvurn .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#raugveitfc .gt_row_group_first th {
+#yshnrdvurn .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#raugveitfc .gt_summary_row {
+#yshnrdvurn .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -488,16 +525,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#raugveitfc .gt_first_summary_row {
+#yshnrdvurn .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#raugveitfc .gt_first_summary_row.thick {
+#yshnrdvurn .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#raugveitfc .gt_last_summary_row {
+#yshnrdvurn .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -507,7 +544,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#raugveitfc .gt_grand_summary_row {
+#yshnrdvurn .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -517,7 +554,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#raugveitfc .gt_first_grand_summary_row {
+#yshnrdvurn .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -527,7 +564,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-top-color: #D3D3D3;
 }
 
-#raugveitfc .gt_last_grand_summary_row_top {
+#yshnrdvurn .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -537,11 +574,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#raugveitfc .gt_striped {
+#yshnrdvurn .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#raugveitfc .gt_table_body {
+#yshnrdvurn .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -550,7 +587,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-bottom-color: #D3D3D3;
 }
 
-#raugveitfc .gt_footnotes {
+#yshnrdvurn .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -564,7 +601,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#raugveitfc .gt_footnote {
+#yshnrdvurn .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -573,7 +610,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#raugveitfc .gt_sourcenotes {
+#yshnrdvurn .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -587,7 +624,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   border-right-color: #D3D3D3;
 }
 
-#raugveitfc .gt_sourcenote {
+#yshnrdvurn .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -595,72 +632,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   padding-right: 5px;
 }
 
-#raugveitfc .gt_left {
+#yshnrdvurn .gt_left {
   text-align: left;
 }
 
-#raugveitfc .gt_center {
+#yshnrdvurn .gt_center {
   text-align: center;
 }
 
-#raugveitfc .gt_right {
+#yshnrdvurn .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#raugveitfc .gt_font_normal {
+#yshnrdvurn .gt_font_normal {
   font-weight: normal;
 }
 
-#raugveitfc .gt_font_bold {
+#yshnrdvurn .gt_font_bold {
   font-weight: bold;
 }
 
-#raugveitfc .gt_font_italic {
+#yshnrdvurn .gt_font_italic {
   font-style: italic;
 }
 
-#raugveitfc .gt_super {
+#yshnrdvurn .gt_super {
   font-size: 65%;
 }
 
-#raugveitfc .gt_footnote_marks {
+#yshnrdvurn .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#raugveitfc .gt_asterisk {
+#yshnrdvurn .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#raugveitfc .gt_indent_1 {
+#yshnrdvurn .gt_indent_1 {
   text-indent: 5px;
 }
 
-#raugveitfc .gt_indent_2 {
+#yshnrdvurn .gt_indent_2 {
   text-indent: 10px;
 }
 
-#raugveitfc .gt_indent_3 {
+#yshnrdvurn .gt_indent_3 {
   text-indent: 15px;
 }
 
-#raugveitfc .gt_indent_4 {
+#yshnrdvurn .gt_indent_4 {
   text-indent: 20px;
 }
 
-#raugveitfc .gt_indent_5 {
+#yshnrdvurn .gt_indent_5 {
   text-indent: 25px;
 }
 
-#raugveitfc .katex-display {
+#yshnrdvurn .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#raugveitfc div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#yshnrdvurn div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -777,48 +814,54 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>Figure 1 is a display of the sanitation types provided ineThekwini municipality within the ISP.</p>
+<p>Figure 1 below is a display of the sanitation types provided ineThekwini municipality within the ISP.</p>
+<pre><code></code></pre>
 <div class="cell">
 <details class="code-fold">
-<summary>Sanitation Pie Chart with Frequencies and Distinct Colours</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>Loading required package: viridisLite</code></pre>
 </div>
 <details class="code-fold">
-<summary>Sanitation Pie Chart with Frequencies and Distinct Colours</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Prepare data</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>sansubset5 <span class="ot">&lt;-</span> sansubset5 <span class="sc">%&gt;%</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n)) <span class="sc">%&gt;%</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">id =</span> <span class="fu">row_number</span>(),                               <span class="co"># numeric ID if needed</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend_label =</span> <span class="fu">paste0</span>(id, <span class="st">": "</span>, SANITATION),     <span class="co"># legend label</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">fraction =</span> n <span class="sc">/</span> <span class="fu">sum</span>(n),                           <span class="co"># fraction for pie</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">ypos =</span> <span class="fu">cumsum</span>(fraction) <span class="sc">-</span> <span class="fl">0.5</span> <span class="sc">*</span> fraction        <span class="co"># position for labels</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate distinct colours for all slices</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>num_categories <span class="ot">&lt;-</span> <span class="fu">nrow</span>(sansubset5)</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>colors <span class="ot">&lt;-</span> <span class="fu">viridis</span>(num_categories, <span class="at">option =</span> <span class="st">"C"</span>)    <span class="co"># bright colour-blind-friendly</span></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Pie chart</span></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sansubset5, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> fraction, <span class="at">fill =</span> legend_label)) <span class="sc">+</span></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">color =</span> <span class="st">"white"</span>) <span class="sc">+</span></span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">y =</span> ypos, <span class="at">label =</span> n), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span>   <span class="co"># add numbers on slices</span></span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="at">theta =</span> <span class="st">"y"</span>) <span class="sc">+</span></span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> colors, <span class="at">name =</span> <span class="st">"Sanitation Types"</span>) <span class="sc">+</span></span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Types of sanitation systems provided in eThekwini municipality"</span>,</span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Provisions in informal settlements"</span></span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">6</span>),</span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>)</span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort by frequency descending and create numeric IDs + labels</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>sansubset5 <span class="ot">&lt;-</span> sansubset5 <span class="sc">%&gt;%</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n)) <span class="sc">%&gt;%</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">id =</span> <span class="fu">row_number</span>(),                     <span class="co"># numeric x-axis</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend_label =</span> <span class="fu">paste0</span>(id, <span class="st">": "</span>, SANITATION, <span class="st">" ("</span>, n, <span class="st">")"</span>)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate colours for all categories</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>num_categories <span class="ot">&lt;-</span> <span class="fu">nrow</span>(sansubset5)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>colors <span class="ot">&lt;-</span> <span class="fu">viridis</span>(num_categories, <span class="at">option =</span> <span class="st">"C"</span>)</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot horizontal bar chart with legend at bottom</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sansubset5, <span class="fu">aes</span>(<span class="at">x =</span> id, <span class="at">y =</span> n, <span class="at">fill =</span> legend_label)) <span class="sc">+</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> n), <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.1</span>, <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span>  <span class="co"># numbers on bars</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> colors, <span class="at">name =</span> <span class="st">"Sanitation Types"</span>) <span class="sc">+</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> sansubset5<span class="sc">$</span>id) <span class="sc">+</span>         <span class="co"># numeric x-axis</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Sanitation Type"</span>,</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Frequency"</span>,</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Types of sanitation systems provided in eThekwini municipality"</span>,</span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Provisions in informal settlements"</span></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span>                                       <span class="co"># horizontal bars</span></span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,                        <span class="co"># legend at bottom</span></span>
+<span id="cb14-29"><a href="#cb14-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">5</span>),             <span class="co"># small legend font</span></span>
+<span id="cb14-30"><a href="#cb14-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">5</span>)</span>
+<span id="cb14-31"><a href="#cb14-31" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb14-32"><a href="#cb14-32" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Sanitation types"</span>,</span>
+<span id="cb14-33"><a href="#cb14-33" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Frequency"</span>,</span>
+<span id="cb14-34"><a href="#cb14-34" aria-hidden="true" tabindex="-1"></a> <span class="at">caption =</span> <span class="fu">paste0</span>(<span class="st">"Figure 1: Frequency of sanitation systems provided per region in eThekwini Municipality"</span>)) <span class="sc">+</span>   <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(),<span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>))                </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -830,48 +873,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="cell">
 <details class="code-fold">
-<summary>Sanitation Horizontal Bar Chart with Legend at Bottom</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(viridis)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Sort by frequency descending and create numeric IDs + labels</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>sansubset5 <span class="ot">&lt;-</span> sansubset5 <span class="sc">%&gt;%</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(n)) <span class="sc">%&gt;%</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">id =</span> <span class="fu">row_number</span>(),                     <span class="co"># numeric x-axis</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend_label =</span> <span class="fu">paste0</span>(id, <span class="st">": "</span>, SANITATION, <span class="st">" ("</span>, n, <span class="st">")"</span>)</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate colours for all categories</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>num_categories <span class="ot">&lt;-</span> <span class="fu">nrow</span>(sansubset5)</span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>colors <span class="ot">&lt;-</span> <span class="fu">viridis</span>(num_categories, <span class="at">option =</span> <span class="st">"C"</span>)</span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot horizontal bar chart with legend at bottom</span></span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(sansubset5, <span class="fu">aes</span>(<span class="at">x =</span> id, <span class="at">y =</span> n, <span class="at">fill =</span> legend_label)) <span class="sc">+</span></span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> n), <span class="at">hjust =</span> <span class="sc">-</span><span class="fl">0.1</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span>  <span class="co"># numbers on bars</span></span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> colors, <span class="at">name =</span> <span class="st">"Sanitation Types"</span>) <span class="sc">+</span></span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> sansubset5<span class="sc">$</span>id) <span class="sc">+</span>         <span class="co"># numeric x-axis</span></span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Sanitation Type ID"</span>,</span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Frequency"</span>,</span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Types of sanitation systems provided in eThekwini municipality"</span>,</span>
-<span id="cb13-27"><a href="#cb13-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Provisions in informal settlements"</span></span>
-<span id="cb13-28"><a href="#cb13-28" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb13-29"><a href="#cb13-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span>                                       <span class="co"># horizontal bars</span></span>
-<span id="cb13-30"><a href="#cb13-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb13-31"><a href="#cb13-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
-<span id="cb13-32"><a href="#cb13-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.position =</span> <span class="st">"bottom"</span>,                        <span class="co"># legend at bottom</span></span>
-<span id="cb13-33"><a href="#cb13-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">3</span>),             <span class="co"># small legend font</span></span>
-<span id="cb13-34"><a href="#cb13-34" aria-hidden="true" tabindex="-1"></a>    <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">3</span>)</span>
-<span id="cb13-35"><a href="#cb13-35" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
-<span id="cb13-36"><a href="#cb13-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="fu">max</span>(sansubset5<span class="sc">$</span>n) <span class="sc">*</span> <span class="fl">1.1</span>)                   <span class="co"># add space for numbers outside bars</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>sanitation_units <span class="sc">%&gt;%</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(SANITATION <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"VIPs"</span>, <span class="st">"Ablution facility"</span>,<span class="st">"Pit Privies"</span>,<span class="st">"Ablution facility &amp; Pit Privies"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> SANITATION, <span class="at">y =</span> San_units, <span class="at">colour =</span> SANITATION, <span class="at">shape =</span> SANITATION)) <span class="sc">+</span>  <span class="fu">geom_point</span>(<span class="at">size=</span><span class="dv">5</span>,<span class="at">alpha=</span><span class="fl">0.7</span>) <span class="sc">+</span> <span class="fu">facet_wrap</span>(<span class="sc">~</span>REGION)<span class="sc">+</span><span class="fu">geom_line</span>()<span class="sc">+</span><span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"red"</span>,<span class="st">"gold"</span>,<span class="st">"black"</span>,<span class="st">"purple"</span>))<span class="sc">+</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Sanitation types"</span>,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Number of sanitation systems provided per region"</span>,</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a> <span class="at">caption =</span> <span class="fu">paste0</span>(<span class="st">"Figure 2: Type of sanitation systems provided per region in eThekwini Municipality"</span>)) <span class="sc">+</span>   <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_blank</span>(),<span class="at">plot.caption =</span> <span class="fu">element_text</span>(<span class="at">hjust =</span> <span class="dv">0</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="1632"></p>
 </figure>
 </div>
 </div>
@@ -879,12 +892,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="discussion-and-conclusion" class="level1">
 <h1>Discussion and conclusion</h1>
-<p>The extension of basic sanitation services to previously unserved informal settlements has been shown to yield <strong>substantial improvements in health and living conditions</strong>. Empirical studies in South Africa demonstrate that access to sanitation significantly reduces exposure to faecal contamination, lowers the prevalence of diarrhoeal disease, and improves environmental hygiene in densely populated settlements (Graham &amp; Polizzotto, 2013; Tumwebaze &amp; Mosler, 2015). Beyond health outcomes, sanitation access contributes to improved <strong>quality of life and social wellbeing</strong>, particularly by enhancing safety, privacy, and dignity for women and children, who are disproportionately affected by inadequate sanitation (Sutherland et al., 2014).</p>
-<p>Project description</p>
-<p>I am using this data to categorise the services provided by the municipality within the settlements and to see if there plans to improve service delivery.</p>
+<p>The analysis reveals that VIP latrines which were deamed as cost effective and CABs dominate sanitation provision within eThekwini’s informal settlements, either individually or in combination. This substantiates that the municipality went from VIPs to CAB to be able to provide sanitation at a large scale rather than individual homes with VIPs. CABs offer improved hygiene through shared waterborne services, and are now most prevalent.</p>
+<p>The regional variation observed indicates that sanitation coverage is uneven, influenced by settlement density, historical investment, and infrastructure backlogs. The coexistence of multiple sanitation types within single settlements underscores the transitional nature of service delivery, where temporary systems address immediate needs while long-term upgrades are planned.</p>
+<p>Pit latrines are prevalent in the rural areas that are further than the CBD, the southern parts of the municipality. The Southern part has more VIPs, an improved version of the pit latrines. These findings emphasize the need for integrated planning that considers technical feasibility, social dynamics, and spatial distribution for future planning.</p>
+<section id="closing-remarks" class="level2">
+<h2 class="anchored" data-anchor-id="closing-remarks">Closing remarks</h2>
+<p>Sanitation provision in eThekwini’s informal settlements is dominated by VIP latrines and communal ablution facilities, with notable spatial variation. Future interventions should prioritize:</p>
+<ul>
+<li><p>Upgrading temporary systems to permanent, safely managed sanitation.</p></li>
+<li><p>Ensuring equitable distribution across underserved regions.</p></li>
+<li><p>Improving maintenance and sustainability of communal facilities.</p></li>
+</ul>
+
+</section>
 </section>
 
-</main>
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-Bhagwan2008" class="csl-entry" role="listitem">
+Bhagwan, J. N., D. Still, C. Buckley, and K. Foxon. 2008. <span>“Challenges with up-Scaling Dry Sanitation Technologies.”</span> <em>Water Science and Technology</em> 58 (1): 21–27. <a href="https://doi.org/10.2166/wst.2008.606">https://doi.org/10.2166/wst.2008.606</a>.
+</div>
+<div id="ref-Bond2013" class="csl-entry" role="listitem">
+Bond, T., E. Roma, K. M. Foxon, M. R. Templeton, and C. A. Buckley. 2013. <span>“Ancient Water and Sanitation Systems <span></span> Applicability for the Contemporary Urban Developing World.”</span> <em>Water Science and Technology</em> 67 (5): 935–41. <a href="https://doi.org/10.2166/wst.2013.628">https://doi.org/10.2166/wst.2013.628</a>.
+</div>
+<div id="ref-flores2009" class="csl-entry" role="listitem">
+Flores, A., C. Buckley, and R. Fenner. 2009. <span>“Selecting Sanitation Systems for Sustainability in Developing Countries.”</span> <em>Water Science and Technology</em> 60 (11): 2973–82. <a href="https://doi.org/10.2166/wst.2009.375">https://doi.org/10.2166/wst.2009.375</a>.
+</div>
+<div id="ref-simiyu2015" class="csl-entry" role="listitem">
+Simiyu, Sheillah. 2015. <span>“Determinants of Usage of Communal Sanitation Facilities in Informal Settlements of Kisumu, Kenya.”</span> <em>Environment and Urbanization</em> 28 (1): 241–58. <a href="https://doi.org/10.1177/0956247815616732">https://doi.org/10.1177/0956247815616732</a>.
+</div>
+<div id="ref-Sutherland2021" class="csl-entry" role="listitem">
+Sutherland, Catherine, Eva Reynaert, Sifiso Dhlamini, Fanelesibonge Magwaza, Juri Lienert, Michel E. Riechmann, Sibongile Buthelezi, et al. 2021. <span>“Socio-Technical Analysis of a Sanitation Innovation in a Peri-Urban Household in Durban, South Africa.”</span> <em>Science of The Total Environment</em> 755 (February): 143284. <a href="https://doi.org/10.1016/j.scitotenv.2020.143284">https://doi.org/10.1016/j.scitotenv.2020.143284</a>.
+</div>
+</div></section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {

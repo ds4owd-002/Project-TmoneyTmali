@@ -1,14 +1,15 @@
 ---
 title: "The Layout of Informal Settlements in Durban, KwaZulu-Natal"
-author: Thabiso Zikalala 
+author: Thabiso Zikalala
 format: html
 editor: visual
 date: "today" 
 toc: true
 code-fold: true
 bibliography: references.bib
-email: zikalala@ukzn.ac.za  
 ---
+
+[Contact info](zikalala@ukzn.ac.za) [LinkedIn](https://www.linkedin.com/in/thabiso-zikalala-47983b65/) ---
 
 # Introduction
 
@@ -44,6 +45,7 @@ library(tidyverse)
 library(markdown)
 library(ggthemes)
 library(ggplot2)
+library(viridisLite)
 ```
 
 ```{r}
@@ -108,11 +110,12 @@ sansubset4<-sansubset3|>filter(ELECTRIC_2!="TBC")
 #| code-summary: "Code"
 #| results: hide
 sansubset5<-sansubset4 %>% count(SANITATION)
+
 sansubset5 %>%
   gt() %>%
   cols_label(
     SANITATION = "Sanitation Type",
-    n = "Frequency"  )
+    n = "Frequency")
 ```
 
 ```         
@@ -124,31 +127,37 @@ sansubset5 %>%
 sansubset5<-sansubset5 %>% mutate(SANITATION=case_when(SANITATION=="VIPs"~"VIP",SANITATION=="Ablution Facility"~"Ablution facility",SANITATION=="Ablution Facilty"~"Ablution facility",SANITATION=="Ablution facillity"~"Ablution facility",SANITATION=="Ablution Facility & VIP"~"Ablution facility & VIP",SANITATION=="Ablutiion Facility"~"Ablution facility",SANITATION=="Ablution Facility & VIPs"~"Ablution facility & VIP",SANITATION=="Ablution Facility & VIP toilets"~"Ablution facility & VIP",SANITATION=="Ablution facilities & Pit Privies"~"Ablution facility & Pit privies",SANITATION=="Ablution facility, Pit Privies"~"Ablution facility & Pit privies",.default = SANITATION))
 ```
 
+```{r}
+#| code-fold: true
+#| code-summary: "Code"
+
+library(dplyr)
+library(gt)
+sansubset6 <- sansubset4 |>
+  count(SANITATION) 
+
+sansubset6 |>
+  gt() |>
+  cols_label(
+    SANITATION = "Sanitation Type",
+    n = "Frequency") 
+```
+
 # Results
 
-Below @tbl-sansubset5 shows the different sanitation provided in the different IS within eThekwini municipality. This data shows the number of sanitation technologies including Ablution facilities, commonly known as community ablution blocks (CAB), VIP latrines and those that are with more than a single sanitation system within the same IS. The table is further translated into a graph as seen on Figure 1.
+See Table @tbl-sansubset5 below that shows the different sanitation provided in the different IS within eThekwini municipality. This data shows the number of sanitation technologies including Ablution facilities, commonly known as community ablution blocks (CAB), VIP latrines and those that are with more than a single sanitation system within the same IS. The table is further translated into a graph as seen on Figure 1.
 
 ```{r}
 #| code-fold: true
 #| code-summary: "Code"
 
 #| label: tbl-sansubset5
-#| tbl-cap: "Types of sanitation systems provided in eThekwini municipality"
-
-sansubset5 <- sansubset4 |>
-  count(SANITATION)
-
-sansubset5 |>
-  gt() |>
-  cols_label(
-    SANITATION = "Sanitation Type",
-    n = "Frequency"
-  ) |>
-  tab_header(
-    title = "Table 1: Types of sanitation systems provided in eThekwini municipality",
-    subtitle = "Provisions in informal settlement"  )
+#| tbl-cap: "Types of sanitation systems provided in eThekwini municipality."
 
 
+sansubset5|>gt()|>
+  cols_label(    SANITATION = "Sanitation Type",
+    n = "Frequency"  )|>tab_header(title="Types of sanitation systems provided in eThekwini municipality.",subtitle="Informal settlement sanitaion provisions")
 
 ```
 
@@ -220,6 +229,21 @@ sanitation_units %>%
 
 ```
 
+```{r}
+#| code-fold: true
+#| code-summary: "Code"
+
+RGN_sansubset<-sanitation_units|>count(SANITATION,San_units,REGION)
+lvl_RGN_sansubset<-c("vip","Ablution facility","Pit latrines","Privies")
+sanitation_units|>mutate(SANITATION=factor(SANITATION,levels=lvl_RGN_sansubset),REGION=factor(REGION,levels=lvl_RGN_sansubset))
+
+sanitation_units|>summarise(n=n(),mean(San_units),median(San_units),)
+```
+
+```{r}
+sanitation_units|>count(San_units)|>summarise(n=n(),mean(San_units),median(San_units),sd(San_units))
+```
+
 # Discussion and conclusion
 
 The analysis reveals that VIP latrines which were deamed as cost effective and CABs dominate sanitation provision within eThekwini’s informal settlements, either individually or in combination. This substantiates that the municipality went from VIPs to CAB to be able to provide sanitation at a large scale rather than individual homes with VIPs. CABs offer improved hygiene through shared waterborne services, and are now most prevalent.
@@ -237,3 +261,5 @@ Sanitation provision in eThekwini’s informal settlements is dominated by VIP l
 -   Ensuring equitable distribution across underserved regions.
 
 -   Improving maintenance and sustainability of communal facilities.
+
+# References

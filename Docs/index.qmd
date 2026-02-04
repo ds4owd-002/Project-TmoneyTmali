@@ -145,74 +145,70 @@ sansubset6 |>
 
 # Results
 
-See Table @tbl-sansubset5 below that shows the different sanitation provided in the different IS within eThekwini municipality. This data shows the number of sanitation technologies including Ablution facilities, commonly known as community ablution blocks (CAB), VIP latrines and those that are with more than a single sanitation system within the same IS. The table is further translated into a graph as seen on Figure 1.
+See @tbl-sansubset6 below that shows the different types of sanitation systems provided in the different IS within eThekwini municipality. This is proportional to the number of IS that are using the type of sanitation provided including Ablution facilities, commonly known as community ablution blocks (CAB), VIP latrines.
 
 ```{r}
+#| label: tbl-sansubset6
+#| tbl-cap: "Types of sanitation systems provided by eThekwini municipality."
 #| code-fold: true
 #| code-summary: "Code"
 
-#| label: tbl-sansubset5
-#| tbl-cap: "Types of sanitation systems provided in eThekwini municipality."
-
-
-sansubset5|>gt()|>
-  cols_label(    SANITATION = "Sanitation Type",
-    n = "Frequency"  )|>tab_header(title="Types of sanitation systems provided in eThekwini municipality.",subtitle="Informal settlement sanitaion provisions")
-
-```
-
-Figure below is a display of the sanitation types provided ineThekwini municipality within the ISP.
-
-```         
-```
-
-```{r}
-#| code-fold: true
-#| code-summary: "Code"
-
-library(ggplot2)
 library(dplyr)
-library(viridis)
+library(gt)
 
-#| label: Fig-sansubset5
-#| fig-cap: "Types of sanitation systems provided in eThekwini municipality"
-
-# Sort by frequency descending and create numeric IDs + labels
-sansubset5 <- sansubset5 %>%
-  arrange(desc(n)) %>%
-  mutate(
-    id = row_number(),                     # numeric x-axis
-    legend_label = paste0(id, ": ", SANITATION, " (", n, ")")
-  )
-
-# Generate colours for all categories
-num_categories <- nrow(sansubset5)
-colors <- viridis(num_categories, option = "C")
-
-# Plot horizontal bar chart with legend at bottom
-ggplot(sansubset5, aes(x = id, y = n, fill = legend_label)) +
-  geom_col() +
-  geom_text(aes(label = n), hjust = -0.1, size = 2) +  # numbers on bars
-  scale_fill_manual(values = colors, name = "Sanitation Types") +
-  scale_x_continuous(breaks = sansubset5$id) +         # numeric x-axis
-  labs(
-    x = "Sanitation Type",
-    y = "Frequency",
-    title = "Types of sanitation systems provided in eThekwini municipality",
-    subtitle = "Provisions in informal settlements"
-  ) +
-  coord_flip() +                                       # horizontal bars
-  theme_minimal() +
-  theme(
-    legend.position = "bottom",                        # legend at bottom
-    legend.text = element_text(size = 5),             # small legend font
-    legend.title = element_text(size = 5)
-  ) +
-    labs(x = "Sanitation types",
-       y = "Frequency",
- caption = paste0("Figure 1: Frequency of sanitation systems provided per region in eThekwini Municipality")) +   theme(axis.text.x = element_blank(),plot.caption = element_text(hjust = 0))                
+sansubset6 %>%
+  gt() %>%
+  cols_label(
+    SANITATION = "Sanitation Type",
+    n = "Frequency"
+  ) %>%
+  tab_header(title= "Types of sanitation systems provided by eThekwini municipality",
+    subtitle = "Informal settlement sanitation provisions"  )
 
 ```
+
+See @fig-sansubset5Plot below is a visualisation of @tbl-sansubset6 of the sanitation system and the number proportional to the number if IS they are situated in.
+
+```{r}
+
+#| label: fig-sansubset5Plot
+#| fig-cap: "Types of sanitation systems provided in eThekwini municipality"
+#| code-fold: true
+
+    library(ggplot2)
+    library(dplyr)
+    library(viridis)
+
+    # make sure the data exists first
+    sansubset5ForPlot <- sansubset4 %>%
+      count(SANITATION, name = "n")
+
+    sansubset5Plot <- sansubset5ForPlot %>%
+      arrange(desc(n)) %>%
+      mutate(SANITATION = factor(SANITATION, levels = SANITATION))
+
+
+    ggplot(sansubset5Plot, aes(SANITATION, n, fill = SANITATION)) +
+  geom_col() +
+  scale_fill_viridis_d() +
+  coord_flip() +
+      labs(
+        x = "Frequency",
+        y = "Sanitation Type",
+        title = "Types of sanitation systems provided in eThekwini municipality",
+        subtitle = "Provisions in informal settlements"
+      ) +
+      theme_minimal() +
+      theme(
+        legend.position = "bottom",
+        legend.text = element_text(),
+        legend.title = element_text(),
+        axis.text.x = element_blank()
+      )       
+
+```
+
+At @fig-sanitation_units is a display of selected sanitation systems that are located in different regions of eThekwini municipality.This shows the number of IS that are served by the speified sanitation system.
 
 ```{r}
 #| code-fold: true
@@ -220,18 +216,24 @@ ggplot(sansubset5, aes(x = id, y = n, fill = legend_label)) +
 #| fig-width: 17
 #| fig-height: 8
 
+# label: fig-sanitation_units
+# fig-cap: Figure 2: Type of sanitation systems provided per region in eThekwini Municipality
+
 sanitation_units %>%
   filter(SANITATION %in% c("VIPs", "Ablution facility","Pit Privies","Ablution facility & Pit Privies")) %>%
-  ggplot(aes(x = SANITATION, y = San_units, colour = SANITATION, shape = SANITATION)) +  geom_point(size=5,alpha=0.7) + facet_wrap(~REGION)+geom_line()+scale_colour_manual(values = c("red","gold","black","purple"))+
+  ggplot(aes(x = SANITATION, y = San_units, colour = SANITATION, shape = SANITATION)) +  geom_point(size=5,alpha=0.7) + facet_wrap(~REGION)+geom_line()+scale_fill_viridis_d()+
   labs(x = "Sanitation types",
        y = "Number of sanitation systems provided per region",
  caption = paste0("Figure 2: Type of sanitation systems provided per region in eThekwini Municipality")) +   theme(axis.text.x = element_blank(),plot.caption = element_text(hjust = 0))
 
+#My previous option was ggplot(aes(x = SANITATION, y = San_units, colour = SANITATION, shape = SANITATION)) +  geom_point(size=5,alpha=0.7) + facet_wrap(~REGION)+geom_line()+scale_colour_manual(values = c("red","gold","black","purple"))
 ```
 
 ```{r}
 #| code-fold: true
 #| code-summary: "Code"
+#| echo: false
+#| results: hide 
 
 RGN_sansubset<-sanitation_units|>count(SANITATION,San_units,REGION)
 lvl_RGN_sansubset<-c("vip","Ablution facility","Pit latrines","Privies")
@@ -246,15 +248,15 @@ sanitation_units|>count(San_units)|>summarise(n=n(),mean(San_units),median(San_u
 
 # Discussion and conclusion
 
-The analysis reveals that VIP latrines which were deamed as cost effective and CABs dominate sanitation provision within eThekwini’s informal settlements, either individually or in combination. This substantiates that the municipality went from VIPs to CAB to be able to provide sanitation at a large scale rather than individual homes with VIPs. CABs offer improved hygiene through shared waterborne services, and are now most prevalent.
+The analysis reveals that VIP latrines which were deamed as cost effective and CABs are the most popular sanitation provision within eThekwini’s informal settlements, either individually or in combination. This substantiates that the municipality went from VIPs to CAB to be able to provide sanitation at a large scale rather than individual homes with VIPs. CABs offer improved hygiene through shared waterborne services, and are now most prevalent.
 
-The regional variation observed indicates that sanitation coverage is uneven, influenced by settlement density, historical investment, and infrastructure backlogs. The coexistence of multiple sanitation types within single settlements underscores the transitional nature of service delivery, where temporary systems address immediate needs while long-term upgrades are planned.
+The regional variation observed indicates that sanitation coverage is uneven, influenced by settlement density, historical investment, and infrastructure backlogs. The co-existence of multiple sanitation types within single settlements underscores the transitional nature of service delivery, where temporary systems address immediate needs while long-term upgrades are planned.
 
 Pit latrines are prevalent in the rural areas that are further than the CBD, the southern parts of the municipality. The Southern part has more VIPs, an improved version of the pit latrines. These findings emphasize the need for integrated planning that considers technical feasibility, social dynamics, and spatial distribution for future planning.
 
 ## Closing remarks
 
-Sanitation provision in eThekwini’s informal settlements is dominated by VIP latrines and communal ablution facilities, with notable spatial variation. Future interventions should prioritize:
+This study was an evaluation of the IS recognised by the eThekwini municipality and the census of what sanitation system is found within each IS. Sanitation provision in eThekwini’s informal settlements is dominated by CABs (Ablution facilities). Over 200 IS are served sanitation through the provision of CABs. Future interventions should prioritize:
 
 -   Upgrading temporary systems to permanent, safely managed sanitation.
 

@@ -1,7 +1,8 @@
 ---
 title: "The Layout of Informal Settlements in Durban, KwaZulu-Natal"
 author: Thabiso Zikalala
-format: html
+format:
+  html: 
 editor: visual
 date: "today" 
 toc: true

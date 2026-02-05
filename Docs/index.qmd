@@ -242,8 +242,16 @@ sanitation_units|>mutate(SANITATION=factor(SANITATION,levels=lvl_RGN_sansubset),
 sanitation_units|>summarise(n=n(),mean(San_units),median(San_units),)
 ```
 
+Below is a typical number of sanitation technologies that are provided and used in the informal settlement. Most IS have 23 units with moderate variation amongst the IS, see @tbl-san-summary .
+
 ```{r}
-sanitation_units|>count(San_units)|>summarise(n=n(),mean(San_units),median(San_units),sd(San_units))
+
+#| label: tbl-san-summary
+#| tbl-cap: "Summary of sanitation units provided per informal settlements"
+
+sanitation_units|>count(San_units)|>summarise(n=n(),mean(San_units),median(San_units),sd(San_units))|>
+  gt() |>
+  fmt_number(columns = everything(), decimals = 2)
 ```
 
 # Discussion and conclusion

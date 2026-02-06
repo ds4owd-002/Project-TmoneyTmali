@@ -1,0 +1,276 @@
+---
+title: "The Layout of Informal Settlements in Durban, KwaZulu-Natal"
+author: Thabiso Zikalala
+format:
+  html: 
+editor: visual
+date: "today" 
+toc: true
+code-fold: true
+bibliography: references.bib
+---
+
+[Contact info](zikalala@ukzn.ac.za) [LinkedIn](https://www.linkedin.com/in/thabiso-zikalala-47983b65/) ---
+
+# Introduction
+
+Access to safe and adequate sanitation is a human right that is linked to human dignity, environmental protection, a conducive environemnt that positively impacts the livelihood of every human being in the world. As a results, it has been prioritised under Sustainable Development Goal 6 (SDG 6), which calls for equitable access to sanitation and hygiene for all by 2030. In South Africa, this has become a basic human right recognised through Section 24 of the constitution. However, rapid urbanisation and persistent socio-economic inequality have resulted in the continued growth of informal settlements, particularly in metropolitan municipalities such as eThekwini, where sanitation provision remains a critical service delivery challenge.
+
+The municipaity of eThekwini recognised this challenge and was pressured by the need to address large sanitation backlogs in areas with high population density, informal housing, and difficult terrain. informal settlements were recognised and given communal ablution blocks (CABs) facilities, and on-site sanitation technologies such as ventilated improved pit (VIP) latrines [@flores2009]. The CABs and VIPs were built temporarilly whilst improving sanitation structures in Durban that will abe able to accomoadate the now desely populated areas as a results of city migration [@Bond2013; @Bhagwan2008].
+
+The National Upgrading Support Programme (NUSP) in eThekwini Municipality has increasingly aligned its mission in increasing sanitation for the informal settlement and previously disadvantahed communities. This is a tailored approach that will consider site specific environmental risks, climate resilience, and long-term service sustainability [@simiyu2015]. In line with SDG 6.2, municipal plans emphasise not only increased coverage, but also improving the quality of service delivery with more durable and safely managed sanitation systems.
+
+The extension of basic sanitation services to previously unserved informal settlements has been shown to yield substantial improvements in health and living conditions. Empirical studies in South Africa demonstrate that access to sanitation significantly reduces exposure to faecal contamination, lowers the prevalence of diarrhoeal disease, and improves environmental hygiene in densely populated settlements (Graham & Polizzotto, 2013; Tumwebaze & Mosler, 2015). Beyond health outcomes, sanitation access contributes to improved quality of life and social wellbeing, particularly by enhancing safety, privacy, and dignity for women and children, who are disproportionately affected by inadequate sanitation [@Sutherland2021].
+
+The eThekwini municipality published its current status of sanitation provision within informal settlements in eThekwini in 2022. This is to be used through city planning in noting the types, distribution, and scale of sanitation services, and how future projects can be implemented in order to meet the objectives of SDG 6 in an urban informal settlement context.
+
+# Methods
+
+Data for this study was obtained from the Informal Settlement Programme dataset accessed via the [eThekwini Open GIS DATA](https://gis-ethekwini.opendata.arcgis.com/datasets/c4a5c06d389b40a3ae49c714bc0c71c9_0/explore?location=-29.875500%2C30.927500%2C11&showTable=true). The eThekwini Open GIS Data platform is GIS database that focuses on the services provided at a municipal level that is open to the public. The dataset was provided in Microsoft Excel format. This data below contains asettlement-level information on the spatial distribution of informal settlements, estimated household counts, and access to basic services, including sanitation, within eThekwini Municipality. This data is to be used by the different municipality departments for future planning.
+
+```{r}
+#| label: setup
+#| include: false
+
+library(gt)
+library(tidyverse)
+library(here)
+library(readxl) 
+library(dplyr) 
+library(tidyr) 
+library(lubridate) 
+library(readxl) 
+library(readr) 
+library(janitor) 
+library(tidyverse)
+library(markdown)
+library(ggthemes)
+library(ggplot2)
+library(viridisLite)
+```
+
+```{r}
+#| code-fold: true
+#| code-summary: "Show code"
+
+eis_data <- suppressMessages(read_csv (here::here("Data /raw/Durban_Informal_Settlement_Programme.csv"),show_col_types = FALSE), invisible(eis_data))
+```
+
+```{r}
+#| code-fold: true
+#| code-summary: "Code"
+
+eis<-read_csv (here::here("Data /raw/Durban_Informal_Settlement_Programme.csv") ,
+           show_col_types = FALSE)
+
+#between chunk 2 and chunk 3, i am not sure which code is working and i am making a decision to keep them both.
+
+```
+
+```{r}
+#| code-fold: true
+#| code-summary: "Code"
+
+eis_raw<-read_csv (here::here("Data /raw/Durban_Informal_Settlement_Programme.csv"),
+           show_col_types = FALSE )
+
+```
+
+```{r}
+#| code-fold: true
+#| code-summary: "Code"
+sanitation_units<- eis |>mutate(San_units=Shape__Length/100)
+```
+
+```{r}
+#| code-fold: true
+#| code-summary: "Code"
+sanunitable<-sanitation_units |>relocate(San_units,.after=STREETNAME)
+
+sanunitable<-sanunitable |>relocate(ALT_NAME,.after=LONGITUDE)
+sanunitable<-sanunitable |>relocate(WARD_S,.after=LONGITUDE)
+sanunitable<-sanunitable |>relocate(ALT_NAME,.after=LONGITUDE)
+sanunitable<-sanunitable |>relocate(SANITATION,.after=STREETNAME)
+sanunitable<-sanunitable |>relocate(WATER_SUPP,.after=PLANNING_U)
+sanunitable<-sanunitable |>relocate(ELECTRIC_2,.after=WATER_SUPP)
+sanunitable<-sanunitable |>relocate(REGION,.after=WATER_SUPP)
+sanunitable<-sanunitable |>relocate(REFUSE,.after=ELECTRIC_2)
+sansubset<-sanunitable[1:566,1:10] 
+```
+
+```{r}
+#| code-fold: true
+#| code-summary: "Code"
+sansubset2<-sansubset|>filter(SANITATION!="TBC")
+sansubset3<-sansubset2|>filter(WATER_SUPP!="TBC")
+sansubset4<-sansubset3|>filter(ELECTRIC_2!="TBC")
+```
+
+```{r}
+#| code-fold: true
+#| code-summary: "Code"
+#| results: hide
+sansubset5<-sansubset4 %>% count(SANITATION)
+
+sansubset5 %>%
+  gt() %>%
+  cols_label(
+    SANITATION = "Sanitation Type",
+    n = "Frequency")
+```
+
+```         
+```
+
+```{r}
+#| code-fold: true
+#| code-summary: "Code"
+sansubset5<-sansubset5 %>% mutate(SANITATION=case_when(SANITATION=="VIPs"~"VIP",SANITATION=="Ablution Facility"~"Ablution facility",SANITATION=="Ablution Facilty"~"Ablution facility",SANITATION=="Ablution facillity"~"Ablution facility",SANITATION=="Ablution Facility & VIP"~"Ablution facility & VIP",SANITATION=="Ablutiion Facility"~"Ablution facility",SANITATION=="Ablution Facility & VIPs"~"Ablution facility & VIP",SANITATION=="Ablution Facility & VIP toilets"~"Ablution facility & VIP",SANITATION=="Ablution facilities & Pit Privies"~"Ablution facility & Pit privies",SANITATION=="Ablution facility, Pit Privies"~"Ablution facility & Pit privies",.default = SANITATION))
+```
+
+```{r}
+#| code-fold: true
+#| code-summary: "Code"
+
+library(dplyr)
+library(gt)
+sansubset6 <- sansubset4 |>
+  count(SANITATION) 
+
+sansubset6 |>
+  gt() |>
+  cols_label(
+    SANITATION = "Sanitation Type",
+    n = "Frequency") 
+```
+
+# Results
+
+See @tbl-sansubset6 below that shows the different types of sanitation systems provided in the different IS within eThekwini municipality. This is proportional to the number of IS that are using the type of sanitation provided including Ablution facilities, commonly known as community ablution blocks (CAB), VIP latrines.
+
+```{r}
+#| label: tbl-sansubset6
+#| tbl-cap: "Types of sanitation systems provided by eThekwini municipality."
+#| code-fold: true
+#| code-summary: "Code"
+
+library(dplyr)
+library(gt)
+
+sansubset6 %>%
+  gt() %>%
+  cols_label(
+    SANITATION = "Sanitation Type",
+    n = "Frequency"
+  ) %>%
+  tab_header(title= "Types of sanitation systems provided by eThekwini municipality",
+    subtitle = "Informal settlement sanitation provisions"  )
+
+```
+
+See @fig-sansubset5Plot below is a visualisation of @tbl-sansubset6 of the sanitation system and the number proportional to the number if IS they are situated in.
+
+```{r}
+
+#| label: fig-sansubset5Plot
+#| fig-cap: "Types of sanitation systems provided in eThekwini municipality"
+#| code-fold: true
+
+    library(ggplot2)
+    library(dplyr)
+    library(viridis)
+
+    # make sure the data exists first
+    sansubset5ForPlot <- sansubset4 %>%
+      count(SANITATION, name = "n")
+
+    sansubset5Plot <- sansubset5ForPlot %>%
+      arrange(desc(n)) %>%
+      mutate(SANITATION = factor(SANITATION, levels = SANITATION))
+
+
+    ggplot(sansubset5Plot, aes(SANITATION, n, fill = SANITATION)) +
+  geom_col() +
+  scale_fill_viridis_d() +
+  coord_flip() +
+      labs(
+        x = "Frequency",
+        y = "Sanitation Type",
+        title = "Types of sanitation systems provided in eThekwini municipality",
+        subtitle = "Provisions in informal settlements"
+      ) +
+      theme_minimal() +
+      theme(
+        legend.position = "bottom",
+        legend.text = element_text(),
+        legend.title = element_text(),
+        axis.text.x = element_blank()
+      )       
+
+```
+
+At @fig-sanitation_units is a display of selected sanitation systems that are located in different regions of eThekwini municipality.This shows the number of IS that are served by the speified sanitation system.
+
+```{r}
+#| code-fold: true
+#| code-summary: "Code"
+#| fig-width: 17
+#| fig-height: 8
+
+# label: fig-sanitation_units
+# fig-cap: Figure 2: Type of sanitation systems provided per region in eThekwini Municipality
+
+sanitation_units %>%
+  filter(SANITATION %in% c("VIPs", "Ablution facility","Pit Privies","Ablution facility & Pit Privies")) %>%
+  ggplot(aes(x = SANITATION, y = San_units, colour = SANITATION, shape = SANITATION)) +  geom_point(size=5,alpha=0.7) + facet_wrap(~REGION)+geom_line()+scale_fill_viridis_d()+
+  labs(x = "Sanitation types",
+       y = "Number of sanitation systems provided per region",
+ caption = paste0("Figure 2: Type of sanitation systems provided per region in eThekwini Municipality")) +   theme(axis.text.x = element_blank(),plot.caption = element_text(hjust = 0))
+
+#My previous option was ggplot(aes(x = SANITATION, y = San_units, colour = SANITATION, shape = SANITATION)) +  geom_point(size=5,alpha=0.7) + facet_wrap(~REGION)+geom_line()+scale_colour_manual(values = c("red","gold","black","purple"))
+```
+
+```{r}
+#| code-fold: true
+#| code-summary: "Code"
+#| echo: false
+#| results: hide 
+
+RGN_sansubset<-sanitation_units|>count(SANITATION,San_units,REGION)
+lvl_RGN_sansubset<-c("vip","Ablution facility","Pit latrines","Privies")
+sanitation_units|>mutate(SANITATION=factor(SANITATION,levels=lvl_RGN_sansubset),REGION=factor(REGION,levels=lvl_RGN_sansubset))
+
+sanitation_units|>summarise(n=n(),mean(San_units),median(San_units),)
+```
+
+Below is a typical number of sanitation technologies that are provided and used in the informal settlement. Most IS have 23 units with moderate variation amongst the IS, see @tbl-san-summary .
+
+```{r}
+
+#| label: tbl-san-summary
+#| tbl-cap: "Summary of sanitation units provided per informal settlements"
+
+sanitation_units|>count(San_units)|>summarise(n=n(),mean(San_units),median(San_units),sd(San_units))|>
+  gt() |>
+  fmt_number(columns = everything(), decimals = 2)
+```
+
+# Discussion and conclusion
+
+The analysis reveals that VIP latrines which were deamed as cost effective and CABs are the most popular sanitation provision within eThekwini’s informal settlements, either individually or in combination. This substantiates that the municipality went from VIPs to CAB to be able to provide sanitation at a large scale rather than individual homes with VIPs. CABs offer improved hygiene through shared waterborne services, and are now most prevalent.
+
+The regional variation observed indicates that sanitation coverage is uneven, influenced by settlement density, historical investment, and infrastructure backlogs. The co-existence of multiple sanitation types within single settlements underscores the transitional nature of service delivery, where temporary systems address immediate needs while long-term upgrades are planned.
+
+Pit latrines are prevalent in the rural areas that are further than the CBD, the southern parts of the municipality. The Southern part has more VIPs, an improved version of the pit latrines. These findings emphasize the need for integrated planning that considers technical feasibility, social dynamics, and spatial distribution for future planning.
+
+## Closing remarks
+
+This study was an evaluation of the IS recognised by the eThekwini municipality and the census of what sanitation system is found within each IS. Sanitation provision in eThekwini’s informal settlements is dominated by CABs (Ablution facilities). Over 200 IS are served sanitation through the provision of CABs. Future interventions should prioritize:
+
+-   Upgrading temporary systems to permanent, safely managed sanitation.
+
+-   Ensuring equitable distribution across underserved regions.
+
+-   Improving maintenance and sustainability of communal facilities.
+
+# References
